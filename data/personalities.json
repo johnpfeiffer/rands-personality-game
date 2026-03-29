@@ -1,0 +1,64 @@
+{
+  "personalities": [
+    {
+      "id": "fixer",
+      "name": "The Fixer",
+      "description": "You see a problem and you dive in headfirst. You don't wait for permission or process — you just start solving. Your team trusts you because when things break, you're already elbow-deep in the fix.",
+      "source_slugs": ["a-deep-breath", "the-coach-and-the-fixer"]
+    },
+    {
+      "id": "coach",
+      "name": "The Coach",
+      "description": "You believe your job is to make everyone around you better. You resist the urge to solve problems yourself, instead guiding others to find the answer. Your patience is your superpower.",
+      "source_slugs": ["the-coach-and-the-fixer"]
+    },
+    {
+      "id": "wolf",
+      "name": "The Wolf",
+      "description": "You're the one they send in when everything is on fire. You thrive in chaos, cut through politics, and get things done by sheer force of will. You scare some people, but you save the day.",
+      "source_slugs": ["the-wolf", "sometimes-your-job-is-to-stay-the-hell-out-of-the-way"]
+    },
+    {
+      "id": "organic",
+      "name": "The Organic",
+      "description": "You lead with intuition and relationships. You can read a room, sense tension before it surfaces, and you trust your gut over a spreadsheet. To you, management is a craft, not a science.",
+      "source_slugs": ["organics-and-mechanics", "signs-of-art"]
+    },
+    {
+      "id": "mechanic",
+      "name": "The Mechanic",
+      "description": "You believe in systems, process, and measurement. If you can't quantify it, you can't improve it. You bring order to chaos and your teams always know exactly where things stand.",
+      "source_slugs": ["organics-and-mechanics", "signs-of-art"]
+    },
+    {
+      "id": "incrementalist",
+      "name": "The Incrementalist",
+      "description": "You ship small and ship often. Perfection is the enemy of progress, and you'd rather get something out the door today and iterate than wait for the grand vision to be complete.",
+      "source_slugs": ["incrementalists-completionists"]
+    },
+    {
+      "id": "completionist",
+      "name": "The Completionist",
+      "description": "You won't ship it until it's right. You see the whole picture and you know that cutting corners now creates debt later. Your work is thorough, polished, and done — truly done.",
+      "source_slugs": ["incrementalists-completionists"]
+    },
+    {
+      "id": "free-electron",
+      "name": "The Free Electron",
+      "description": "You're a self-directed force of nature. Point you at a problem and get out of the way. You don't need management, meetings, or hand-holding — you need interesting problems and autonomy.",
+      "source_slugs": ["the-truth-versus-spin"]
+    },
+    {
+      "id": "old-guard",
+      "name": "The Old Guard",
+      "description": "You are the institutional memory. You know why things are built the way they are, where the bodies are buried, and which 'great new ideas' were already tried and failed. You protect what works.",
+      "source_slugs": ["the-old-guard", "the-guard", "the-process-myth"]
+    },
+    {
+      "id": "entropy-crusher",
+      "name": "The Entropy Crusher",
+      "description": "You wage a daily war against disorder. Unclear ownership, ambiguous priorities, sloppy communication — you hunt these down and eliminate them. You believe entropy is the natural enemy of shipping.",
+      "source_slugs": ["entropy-crushers"]
+    }
+  ]
+}

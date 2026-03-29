@@ -1,0 +1,224 @@
+{
+  "questions": [
+    {
+      "id": "q1-v1",
+      "text": "A critical bug is found an hour before release. What do you do?",
+      "answers": [
+        {
+          "text": "Jump in and fix it yourself — you're fastest",
+          "scores": {"fixer": 3, "wolf": 1}
+        },
+        {
+          "text": "Walk the engineer through debugging it so they learn",
+          "scores": {"coach": 3}
+        },
+        {
+          "text": "Take command of the situation — triage, delegate, and clear the path",
+          "scores": {"wolf": 3, "entropy-crusher": 1}
+        },
+        {
+          "text": "Revert the risky change and ship what's stable now",
+          "scores": {"incrementalist": 2, "old-guard": 1}
+        }
+      ]
+    },
+    {
+      "id": "q2-v1",
+      "text": "How do you know a project is on track?",
+      "answers": [
+        {
+          "text": "I talk to people — their tone and energy tell me everything",
+          "scores": {"organic": 3}
+        },
+        {
+          "text": "Dashboards, burndown charts, and status reports",
+          "scores": {"mechanic": 3}
+        },
+        {
+          "text": "Are we shipping increments regularly? Then we're fine",
+          "scores": {"incrementalist": 3}
+        },
+        {
+          "text": "I check that every open question has an owner and a deadline",
+          "scores": {"entropy-crusher": 3}
+        }
+      ]
+    },
+    {
+      "id": "q3-v1",
+      "text": "A junior engineer is stuck on a task. How do you help?",
+      "answers": [
+        {
+          "text": "Pair with them and show them how to do it",
+          "scores": {"fixer": 2, "coach": 1}
+        },
+        {
+          "text": "Ask questions until they find the answer themselves",
+          "scores": {"coach": 3}
+        },
+        {
+          "text": "Point them to the right documentation and check back later",
+          "scores": {"free-electron": 2, "mechanic": 1}
+        },
+        {
+          "text": "Reassign it — put the right person on the right problem",
+          "scores": {"wolf": 2, "entropy-crusher": 1}
+        }
+      ]
+    },
+    {
+      "id": "q4-v1",
+      "text": "Someone proposes replacing a core system with new technology. Your reaction?",
+      "answers": [
+        {
+          "text": "We tried that in 2019. Let me tell you what happened.",
+          "scores": {"old-guard": 3}
+        },
+        {
+          "text": "Let's prototype it in a week and see if it actually works",
+          "scores": {"incrementalist": 2, "free-electron": 1}
+        },
+        {
+          "text": "Show me the migration plan, rollback strategy, and success metrics",
+          "scores": {"mechanic": 2, "completionist": 1}
+        },
+        {
+          "text": "If the team's excited about it, that energy is worth exploring",
+          "scores": {"organic": 3}
+        }
+      ]
+    },
+    {
+      "id": "q5-v1",
+      "text": "How do you prefer to work on a big problem?",
+      "answers": [
+        {
+          "text": "Give me the problem, close the door, and I'll come back with an answer",
+          "scores": {"free-electron": 3}
+        },
+        {
+          "text": "Break it into small pieces and start shipping the first one today",
+          "scores": {"incrementalist": 3}
+        },
+        {
+          "text": "Understand the full scope before writing a single line of code",
+          "scores": {"completionist": 3}
+        },
+        {
+          "text": "Figure out who's confused about what and start clarifying",
+          "scores": {"entropy-crusher": 2, "coach": 1}
+        }
+      ]
+    },
+    {
+      "id": "q6-v1",
+      "text": "What frustrates you most at work?",
+      "answers": [
+        {
+          "text": "Nobody knows who's responsible for what",
+          "scores": {"entropy-crusher": 3}
+        },
+        {
+          "text": "People keep reinventing wheels that already work fine",
+          "scores": {"old-guard": 3}
+        },
+        {
+          "text": "We over-plan and under-ship",
+          "scores": {"incrementalist": 2, "fixer": 1}
+        },
+        {
+          "text": "We ship sloppy work and call it 'iterating'",
+          "scores": {"completionist": 3}
+        }
+      ]
+    },
+    {
+      "id": "q7-v1",
+      "text": "Your team has a conflict between two senior engineers. What do you do?",
+      "answers": [
+        {
+          "text": "Talk to each privately, read the real dynamic, then bring them together",
+          "scores": {"organic": 3, "coach": 1}
+        },
+        {
+          "text": "Make the call yourself — someone has to decide",
+          "scores": {"wolf": 3}
+        },
+        {
+          "text": "Set up a structured decision framework so it's not personal",
+          "scores": {"mechanic": 3}
+        },
+        {
+          "text": "Let them work it out — they're adults",
+          "scores": {"free-electron": 2}
+        }
+      ]
+    },
+    {
+      "id": "q8-v1",
+      "text": "A feature is 90% done but the last 10% is painful. What now?",
+      "answers": [
+        {
+          "text": "Ship the 90% — users get value now, we polish later",
+          "scores": {"incrementalist": 3, "fixer": 1}
+        },
+        {
+          "text": "Finish it properly — the last 10% is what separates good from great",
+          "scores": {"completionist": 3}
+        },
+        {
+          "text": "I'll just knock out that last 10% myself this weekend",
+          "scores": {"fixer": 2, "free-electron": 1}
+        },
+        {
+          "text": "Identify exactly what's blocking and assign clear owners for each piece",
+          "scores": {"entropy-crusher": 3}
+        }
+      ]
+    },
+    {
+      "id": "q9-v1",
+      "text": "What's your meeting style?",
+      "answers": [
+        {
+          "text": "Agenda, time-boxed, decisions documented, next actions assigned",
+          "scores": {"mechanic": 2, "entropy-crusher": 2}
+        },
+        {
+          "text": "I avoid meetings — just send me the doc and I'll comment",
+          "scores": {"free-electron": 3}
+        },
+        {
+          "text": "Casual and conversational — the best info comes out when people relax",
+          "scores": {"organic": 3}
+        },
+        {
+          "text": "Short and decisive — here's the problem, here's what we're doing, go",
+          "scores": {"wolf": 2, "fixer": 1}
+        }
+      ]
+    },
+    {
+      "id": "q10-v1",
+      "text": "Your company announces a major reorg. Your first thought?",
+      "answers": [
+        {
+          "text": "Who's going to be confused? Let me get ahead of the chaos",
+          "scores": {"entropy-crusher": 3}
+        },
+        {
+          "text": "I've seen this movie before — I know how it ends",
+          "scores": {"old-guard": 3}
+        },
+        {
+          "text": "Let me talk to my people and find out how they're really feeling",
+          "scores": {"organic": 2, "coach": 2}
+        },
+        {
+          "text": "New structure, new opportunities — where's the most interesting problem now?",
+          "scores": {"free-electron": 2, "wolf": 1}
+        }
+      ]
+    }
+  ]
+}
