@@ -1,6 +1,7 @@
 Goal: prerequisite work to have the data that underpins this app.
 
-Phase 1 completed: build the source-data ingestion pipeline for Rands in Repose.
+
+Task: build the source-data ingestion pipeline for Rands in Repose.
 
 - Build a script to download articles
 - Download all blog posts into a local structured dataset for analysis and application development.
@@ -10,5 +11,7 @@ Phase 1 completed: build the source-data ingestion pipeline for Rands in Repose.
 
 Exclude comments on the article/blog for MVP; comment ingestion can be added in a later phase.
 
-test-download.html is an example downloaded with curl
+example-download.html is an example downloaded with curl
+
+*(I manually spot checked and believe there are 906 articles)*
 

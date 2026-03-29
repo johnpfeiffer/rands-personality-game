@@ -2,7 +2,10 @@
 
 ## Goal
 
-Build a local source-data pipeline for the personality quiz by downloading Rands in Repose articles into a structured format that is easy to inspect, transform, and analyze.
+"Which Personality Game" has multiple parts
+
+- a downloader of source articles
+
 
 ## System Design
 
@@ -20,17 +23,6 @@ flowchart TD
     Model --> Manifest[manifest.json]
 ```
 
-## User Journey
-
-```mermaid
-flowchart LR
-    Start[Run downloader script] --> Discover[Discover article sources]
-    Discover --> Fetch[Fetch post data]
-    Fetch --> Extract[Extract main article content]
-    Extract --> Persist[Write structured local files]
-    Persist --> Analyze[Use local source data for quiz analysis and app development]
-```
-
 ## Layering
 
 - `models/article.py` holds the core article record.
@@ -39,6 +31,7 @@ flowchart LR
 
 ## Output Contract
 
-- `data/rands/articles.jsonl` stores one article per line for batch processing.
-- `data/rands/articles/*.json` stores one file per article for debugging and manual inspection.
-- `data/rands/manifest.json` records the run metadata and article counts.
+- `data/articles.jsonl` stores one article per line for batch processing.
+- `data/articles/*.json` stores one file per article for debugging and manual inspection.
+- `data/manifest.json` records the run metadata and article counts.
+
