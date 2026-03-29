@@ -18,6 +18,5 @@ venv/
 .DS_Store
 
 # Project-specific
-data/
-models/
-test-download.html
+raw/
+
