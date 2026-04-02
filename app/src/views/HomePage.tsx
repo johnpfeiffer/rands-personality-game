@@ -1,8 +1,9 @@
 import { Button, Container, Typography } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export default function HomePage() {
   const navigate = useNavigate()
+  const { app = 'rands-game' } = useParams()
 
   return (
     <Container maxWidth="sm" sx={{ textAlign: 'center', mt: 8 }}>
@@ -16,7 +17,7 @@ export default function HomePage() {
       <Button
         variant="outlined"
         size="large"
-        onClick={() => navigate('/survey')}
+        onClick={() => navigate(`/${app}/survey`)}
       >
         Start the Quiz →
       </Button>

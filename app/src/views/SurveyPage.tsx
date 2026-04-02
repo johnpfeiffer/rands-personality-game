@@ -6,13 +6,14 @@ import {
   Typography,
   Stack,
 } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { questions, personalities } from '../data'
 import { tallyScores, rankResults } from '../models/scoring'
 import type { Answer } from '../models/types'
 
 export default function SurveyPage() {
   const navigate = useNavigate()
+  const { app = 'rands-game' } = useParams()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedAnswers, setSelectedAnswers] = useState<Answer[]>([])
 
@@ -27,7 +28,7 @@ export default function SurveyPage() {
       if (currentIndex + 1 >= questions.length) {
         const totals = tallyScores(next)
         const ranked = rankResults(totals, personalities)
-        navigate(`/result/${ranked[0].personality.id}`, {
+        navigate(`/${app}/result/${ranked[0].personality.id}`, {
           state: { totals },
         })
       } else {

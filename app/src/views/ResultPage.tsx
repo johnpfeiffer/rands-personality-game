@@ -17,7 +17,7 @@ import { rankResults } from '../models/scoring'
 const RANDS_BASE = 'https://randsinrepose.com/archives/'
 
 export default function ResultPage() {
-  const { id } = useParams<{ id: string }>()
+  const { id, app = 'rands-game' } = useParams<{ id: string; app: string }>()
   const navigate = useNavigate()
   const location = useLocation()
   const totals = (location.state as { totals?: Record<string, number> } | null)?.totals
@@ -28,7 +28,7 @@ export default function ResultPage() {
     return (
       <Container maxWidth="sm" sx={{ mt: 8, textAlign: 'center' }}>
         <Typography variant="h5">Personality not found.</Typography>
-        <Button onClick={() => navigate('/')} sx={{ mt: 2 }}>
+        <Button onClick={() => navigate(`/${app}`)} sx={{ mt: 2 }}>
           ← Home
         </Button>
       </Container>
@@ -90,7 +90,7 @@ export default function ResultPage() {
       <Button
         variant="outlined"
         onClick={() => {
-          navigate('/survey')
+          navigate(`/${app}/survey`)
         }}
         sx={{ mt: 3 }}
       >

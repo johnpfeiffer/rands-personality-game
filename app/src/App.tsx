@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom'
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import HomePage from './views/HomePage'
 import SurveyPage from './views/SurveyPage'
@@ -9,17 +9,36 @@ const theme = createTheme({
   typography: { fontFamily: '"Georgia", serif' },
 })
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Outlet />,
+    children: [
+      {
+        path: ':app',
+        element: <HomePage />,
+      },
+      {
+        path: ':app/survey',
+        element: <SurveyPage />,
+      },
+      {
+        path: ':app/result/:id',
+        element: <ResultPage />,
+      },
+      {
+        index: true,
+        element: <HomePage />,
+      },
+    ],
+  },
+])
+
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/survey" element={<SurveyPage />} />
-          <Route path="/result/:id" element={<ResultPage />} />
-        </Routes>
-      </BrowserRouter>
+      <RouterProvider router={router} />
     </ThemeProvider>
   )
 }
