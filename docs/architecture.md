@@ -6,6 +6,7 @@
 
 - a downloader of source articles
 - extracted personality and quiz data that underpins the game
+- a React SPA quiz that matches the user to a personality
 
 ## System Design
 
@@ -30,7 +31,30 @@ flowchart TD
         Questions -->|sparse scores| Personalities
     end
 
+    subgraph v3 [React SPA]
+        DataImport[Static JSON imports] --> ScoringModel[scoring.ts]
+        ScoringModel --> SurveyView[SurveyPage]
+        ScoringModel --> ResultView[ResultPage]
+        HomeView[HomePage] -->|Start Quiz| SurveyView
+        SurveyView -->|Navigate on completion| ResultView
+    end
+
     Model --> Articles
+    Personalities --> DataImport
+    Questions --> DataImport
+```
+
+## User Journey
+
+```mermaid
+flowchart LR
+    A["/ (Home)"] -->|Click Start| B["/survey"]
+    B -->|Answer Q1..Q10| B
+    B -->|Last answer| C["/result/:id"]
+    C -->|Take again| B
+    C -->|Expand| D[Source Articles]
+    C -->|Expand| E[Full Scores]
+    B -->|Restart| B
 ```
 
 ## Layering
@@ -47,6 +71,14 @@ flowchart TD
 - `data/questions.json` defines versioned quiz questions with answers that carry sparse scores toward personalities.
 - No pipeline or scripts required — these files are hand-curated.
 
+### v3 — React SPA (`app/`)
+
+- **Models** (`src/models/`): Domain types (`types.ts`) and scoring logic (`scoring.ts`) — pure functions, no React dependency.
+- **Data** (`src/data/`): Static JSON imports with a typed accessor (`getPersonalityById`).
+- **Views** (`src/views/`): Three route-level components — `HomePage`, `SurveyPage`, `ResultPage`.
+- **Routing**: React Router with `/`, `/survey`, `/result/:id`.
+- **Styling**: Material-UI light theme, minimalist, mobile-friendly.
+
 ## Output Contract
 
 ### v1
@@ -60,3 +92,7 @@ flowchart TD
 - `data/personalities.json` stores personality definitions keyed by `id` (e.g. `"fixer"`).
 - `data/questions.json` stores versioned questions (`qN-vN`) with sparse answer-to-personality scoring.
 
+### v3
+
+- `app/dist/` is the production build output (static files, deployable to Cloudflare Pages).
+- Routes: `/` → Home, `/survey` → Quiz, `/result/:id` → Result.
