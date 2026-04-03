@@ -59,6 +59,66 @@
       "name": "The Entropy Crusher",
       "description": "You wage a daily war against disorder. Unclear ownership, ambiguous priorities, sloppy communication — you hunt these down and eliminate them. You believe entropy is the natural enemy of shipping.",
       "source_slugs": ["entropy-crushers"]
+    },
+    {
+      "id": "poet",
+      "name": "The Poet",
+      "description": "You believe words shape reality. A well-written spec, a carefully crafted email, a perfect slide — these are your weapons. You obsess over how things are communicated because you know that clarity of language is clarity of thought.",
+      "source_slugs": ["poets-and-police", "the-button"]
+    },
+    {
+      "id": "dictator",
+      "name": "The Dictator",
+      "description": "You believe someone has to be in charge and that someone is you. You make fast, decisive calls and you don't apologize for them. Your teams move quickly because there's never ambiguity about direction.",
+      "source_slugs": ["three-bad-managers", "three-superpowers"]
+    },
+    {
+      "id": "wanderer",
+      "name": "The Wanderer",
+      "description": "You learn by exploring. You roam the org, sit in on other teams' standups, read code you don't own, and ask questions nobody thought to ask. Your curiosity is your compass and your network is vast.",
+      "source_slugs": ["the-wanderer"]
+    },
+    {
+      "id": "storyteller",
+      "name": "The Storyteller",
+      "description": "You frame everything as a narrative. The product roadmap is an epic, the postmortem is a cautionary tale, and the all-hands is your stage. You know that people remember stories long after they forget bullet points.",
+      "source_slugs": ["stimulus-driven-creatures"]
+    },
+    {
+      "id": "builder",
+      "name": "The Builder",
+      "description": "You're happiest when you're making something from nothing. Greenfield projects, new teams, v1 products — this is where you thrive. Maintenance bores you. You want to create, not curate.",
+      "source_slugs": ["one-thing"]
+    },
+    {
+      "id": "anchor",
+      "name": "The Anchor",
+      "description": "You're the steady presence in the room. When meetings go off the rails, you pull them back. When panic sets in, your calm is contagious. You keep the team grounded when everything else is chaos.",
+      "source_slugs": ["meeting-creatur"]
+    },
+    {
+      "id": "distiller",
+      "name": "The Distiller",
+      "description": "You take complexity and make it simple. A 50-page document becomes a one-pager. A two-hour debate becomes a clear decision. You strip away noise to reveal the signal underneath.",
+      "source_slugs": ["knee-jerks"]
+    },
+    {
+      "id": "handler",
+      "name": "The Handler",
+      "description": "You manage up, down, and sideways with equal skill. You know who needs what information, when they need it, and how to frame it. You're the connective tissue that keeps the organization functioning.",
+      "source_slugs": ["knee-jerks"]
+    },
+    {
+      "id": "optimizer",
+      "name": "The Optimizer",
+      "description": "You can't leave well enough alone — in the best way. Every process, tool, and workflow is something you want to make faster, smoother, and more elegant. You see waste everywhere and you can't rest until it's eliminated.",
+      "source_slugs": ["stimulus-driven-creatures"]
+    },
+    {
+      "id": "new-guard",
+      "name": "The New Guard",
+      "description": "You challenge the status quo because you're not burdened by its history. You ask 'why not?' when everyone else says 'because.' You bring fresh energy and fresh ideas, and you're not afraid to break things that need breaking.",
+      "source_slugs": ["the-old-guard", "the-guard", "the-process-myth"]
     }
   ]
 }

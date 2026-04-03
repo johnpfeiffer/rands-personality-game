@@ -18,7 +18,7 @@
         },
         {
           "text": "Revert the risky change and ship what's stable now",
-          "scores": {"incrementalist": 2, "old-guard": 1}
+          "scores": {"incrementalist": 2, "old-guard": 1, "anchor": 1}
         }
       ]
     },
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "q7-v1",
+      "id": "q7-v2",
       "text": "Your team has a conflict between two senior engineers. What do you do?",
       "answers": [
         {
@@ -142,15 +142,15 @@
         },
         {
           "text": "Make the call yourself — someone has to decide",
-          "scores": {"wolf": 3}
+          "scores": {"wolf": 3, "dictator": 1}
         },
         {
           "text": "Set up a structured decision framework so it's not personal",
           "scores": {"mechanic": 3}
         },
         {
-          "text": "Let them work it out — they're adults",
-          "scores": {"free-electron": 2}
+          "text": "Stay steady and keep both sides focused on the shared goal",
+          "scores": {"anchor": 3}
         }
       ]
     },
@@ -190,11 +190,11 @@
         },
         {
           "text": "Casual and conversational — the best info comes out when people relax",
-          "scores": {"organic": 3}
+          "scores": {"organic": 3, "anchor": 1}
         },
         {
           "text": "Short and decisive — here's the problem, here's what we're doing, go",
-          "scores": {"wolf": 2, "fixer": 1}
+          "scores": {"wolf": 2, "fixer": 1, "dictator": 1}
         }
       ]
     },
@@ -212,11 +212,231 @@
         },
         {
           "text": "Let me talk to my people and find out how they're really feeling",
-          "scores": {"organic": 2, "coach": 2}
+          "scores": {"organic": 2, "coach": 2, "anchor": 1}
         },
         {
           "text": "New structure, new opportunities — where's the most interesting problem now?",
           "scores": {"free-electron": 2, "wolf": 1}
+        }
+      ]
+    },
+    {
+      "id": "q11-v1",
+      "text": "You need to communicate a difficult decision to the team. How do you deliver it?",
+      "answers": [
+        {
+          "text": "I craft a carefully worded message — every sentence is deliberate",
+          "scores": {"poet": 3, "distiller": 1}
+        },
+        {
+          "text": "I tell it straight — here's what we're doing and why, no sugarcoating",
+          "scores": {"dictator": 3}
+        },
+        {
+          "text": "I frame it as the next chapter in our story — where we've been and where we're going",
+          "scores": {"storyteller": 3}
+        },
+        {
+          "text": "I tailor the message differently for each audience — engineers, PMs, execs",
+          "scores": {"handler": 3}
+        }
+      ]
+    },
+    {
+      "id": "q12-v1",
+      "text": "You join a new company. What do you do in your first two weeks?",
+      "answers": [
+        {
+          "text": "Wander around — sit in on meetings, read old docs, talk to everyone I can find",
+          "scores": {"wanderer": 3}
+        },
+        {
+          "text": "Question everything — why is this process so slow? Why do we use this tool?",
+          "scores": {"new-guard": 3}
+        },
+        {
+          "text": "Find the messiest problem and start proposing fixes immediately",
+          "scores": {"fixer": 2, "builder": 1}
+        },
+        {
+          "text": "Map out the org chart, learn who has influence, and build relationships",
+          "scores": {"handler": 2, "organic": 1}
+        }
+      ]
+    },
+    {
+      "id": "q13-v1",
+      "text": "What kind of project excites you most?",
+      "answers": [
+        {
+          "text": "A brand-new product built from scratch with a small team",
+          "scores": {"builder": 3, "free-electron": 1}
+        },
+        {
+          "text": "Taking a slow, bloated system and making it 10x faster",
+          "scores": {"optimizer": 3}
+        },
+        {
+          "text": "A complex cross-team initiative where I'm the one connecting the dots",
+          "scores": {"handler": 2, "wanderer": 1}
+        },
+        {
+          "text": "One where I get to write the vision doc that rallies everyone behind it",
+          "scores": {"poet": 2, "storyteller": 1}
+        }
+      ]
+    },
+    {
+      "id": "q14-v1",
+      "text": "A meeting is going in circles. What do you do?",
+      "answers": [
+        {
+          "text": "Calmly restate the core question and redirect the group",
+          "scores": {"anchor": 3}
+        },
+        {
+          "text": "Summarize the two positions in one sentence each and force a decision",
+          "scores": {"distiller": 3}
+        },
+        {
+          "text": "Just make the decision myself — we've talked enough",
+          "scores": {"dictator": 2, "wolf": 1}
+        },
+        {
+          "text": "Suggest we take it offline and let people think before we reconvene",
+          "scores": {"organic": 2, "anchor": 1}
+        }
+      ]
+    },
+    {
+      "id": "q15-v1",
+      "text": "How do you present a postmortem?",
+      "answers": [
+        {
+          "text": "As a narrative — what happened, how it felt, what it taught us",
+          "scores": {"storyteller": 3}
+        },
+        {
+          "text": "A clean timeline with root causes distilled to a single paragraph",
+          "scores": {"distiller": 3, "mechanic": 1}
+        },
+        {
+          "text": "I focus on making sure the right people hear the right takeaways",
+          "scores": {"handler": 3}
+        },
+        {
+          "text": "I turn it into process changes — new alerts, new runbooks, new owners",
+          "scores": {"optimizer": 2, "entropy-crusher": 1}
+        }
+      ]
+    },
+    {
+      "id": "q16-v1",
+      "text": "A legacy process is slowing everyone down. Your move?",
+      "answers": [
+        {
+          "text": "Rip it out and replace it — fresh start",
+          "scores": {"new-guard": 3, "builder": 1}
+        },
+        {
+          "text": "Understand why it exists first — someone created it for a reason",
+          "scores": {"old-guard": 2, "wanderer": 1}
+        },
+        {
+          "text": "Measure the bottleneck, then surgically optimize the worst parts",
+          "scores": {"optimizer": 3}
+        },
+        {
+          "text": "Write up a clear proposal comparing the old way and new way",
+          "scores": {"poet": 2, "distiller": 1}
+        }
+      ]
+    },
+    {
+      "id": "q17-v1",
+      "text": "Your skip-level wants a summary of your team's quarter. How do you prepare?",
+      "answers": [
+        {
+          "text": "I tell the story of the quarter — the arc from challenge to outcome",
+          "scores": {"storyteller": 3}
+        },
+        {
+          "text": "One page, three bullet points, done",
+          "scores": {"distiller": 3}
+        },
+        {
+          "text": "I know exactly what this exec cares about and I frame everything around that",
+          "scores": {"handler": 3}
+        },
+        {
+          "text": "I write a beautifully clear document that speaks for itself",
+          "scores": {"poet": 3}
+        }
+      ]
+    },
+    {
+      "id": "q18-v1",
+      "text": "What's your instinct when you see a team you're not on struggling?",
+      "answers": [
+        {
+          "text": "Walk over and ask what's going on — maybe I can help or learn something",
+          "scores": {"wanderer": 3, "coach": 1}
+        },
+        {
+          "text": "Stay in my lane — they have their own leadership",
+          "scores": {"free-electron": 2, "anchor": 1}
+        },
+        {
+          "text": "Quietly connect them with the right people who can help",
+          "scores": {"handler": 3}
+        },
+        {
+          "text": "Offer to rebuild their tooling — it's probably a systems problem",
+          "scores": {"builder": 2, "optimizer": 1}
+        }
+      ]
+    },
+    {
+      "id": "q19-v1",
+      "text": "How do you handle a high-pressure room where tempers are flaring?",
+      "answers": [
+        {
+          "text": "Be the calm center — lower my voice, slow the pace, ground the room",
+          "scores": {"anchor": 3}
+        },
+        {
+          "text": "Cut through the emotion — state the facts and force us back to the issue",
+          "scores": {"dictator": 2, "distiller": 1}
+        },
+        {
+          "text": "Read the room — figure out what's really driving the tension",
+          "scores": {"organic": 2, "wanderer": 1}
+        },
+        {
+          "text": "Take charge — assign actions and end the meeting",
+          "scores": {"wolf": 2, "entropy-crusher": 1}
+        }
+      ]
+    },
+    {
+      "id": "q20-v1",
+      "text": "If you could change one thing about your organization tomorrow, what would it be?",
+      "answers": [
+        {
+          "text": "Kill the sacred cows — remove outdated practices nobody questions",
+          "scores": {"new-guard": 3}
+        },
+        {
+          "text": "Build a new internal tool that automates the biggest time-waster",
+          "scores": {"builder": 2, "optimizer": 2}
+        },
+        {
+          "text": "Rewrite the company narrative so everyone understands where we're headed",
+          "scores": {"storyteller": 2, "poet": 2}
+        },
+        {
+          "text": "Explore adjacent teams and create bridges between silos",
+          "scores": {"wanderer": 2, "handler": 1}
         }
       ]
     }

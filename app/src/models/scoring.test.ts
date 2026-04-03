@@ -1,8 +1,9 @@
 import { describe, it, expect } from 'vitest'
 import { tallyScores, rankResults } from './scoring'
-import type { Personality, Answer } from './types'
+import type { Personality, Answer, Question } from './types'
+import { personalities, questions } from '../data'
 
-const personalities: Personality[] = [
+const mockPersonalities: Personality[] = [
   { id: 'alpha', name: 'Alpha', description: 'desc-a', source_slugs: [] },
   { id: 'beta', name: 'Beta', description: 'desc-b', source_slugs: [] },
   { id: 'gamma', name: 'Gamma', description: 'desc-g', source_slugs: [] },
@@ -58,8 +59,82 @@ describe('rankResults', () => {
 
   cases.forEach(({ name, totals, expectedOrder }) => {
     it(name, () => {
-      const results = rankResults(totals, personalities)
+      const results = rankResults(totals, mockPersonalities)
       expect(results.map((r) => r.personality.id)).toEqual(expectedOrder)
     })
+  })
+})
+
+describe('highest score wins the result', () => {
+  const cases: { name: string; totals: Record<string, number>; expectedWinner: string }[] = [
+    {
+      name: 'single dominant personality wins',
+      totals: { fixer: 10, coach: 2, wolf: 1 },
+      expectedWinner: 'fixer',
+    },
+    {
+      name: 'close race decided by score',
+      totals: { organic: 7, mechanic: 6, coach: 5 },
+      expectedWinner: 'organic',
+    },
+    {
+      name: 'tie broken alphabetically by id',
+      totals: { wolf: 5, anchor: 5 },
+      expectedWinner: 'anchor',
+    },
+  ]
+
+  cases.forEach(({ name, totals, expectedWinner }) => {
+    it(name, () => {
+      const ranked = rankResults(totals, personalities)
+      expect(ranked[0].personality.id).toBe(expectedWinner)
+      expect(ranked[0].score).toBe(
+        Math.max(...Object.values(totals), 0),
+      )
+    })
+  })
+})
+
+function bestAnswerForPersonality(question: Question, personalityId: string): Answer {
+  return question.answers.reduce((best, answer) =>
+    (answer.scores[personalityId] ?? 0) > (best.scores[personalityId] ?? 0) ? answer : best,
+  )
+}
+
+describe('every personality is reachable', () => {
+  personalities.forEach((p) => {
+    it(`${p.name} (${p.id}) can win by picking optimal answers`, () => {
+      const optimalAnswers = questions.map((q) => bestAnswerForPersonality(q, p.id))
+      const totals = tallyScores(optimalAnswers)
+      const ranked = rankResults(totals, personalities)
+      expect(ranked[0].personality.id).toBe(p.id)
+    })
+  })
+})
+
+describe('question data integrity', () => {
+  it('every score key in questions references a valid personality id', () => {
+    const validIds = new Set(personalities.map((p) => p.id))
+    for (const q of questions) {
+      for (const a of q.answers) {
+        for (const scoreKey of Object.keys(a.scores)) {
+          expect(validIds.has(scoreKey), `unknown personality "${scoreKey}" in ${q.id}`).toBe(true)
+        }
+      }
+    }
+  })
+
+  it('every personality id appears in at least one answer score', () => {
+    const scoredIds = new Set<string>()
+    for (const q of questions) {
+      for (const a of q.answers) {
+        for (const key of Object.keys(a.scores)) {
+          scoredIds.add(key)
+        }
+      }
+    }
+    for (const p of personalities) {
+      expect(scoredIds.has(p.id), `personality "${p.id}" is never scored`).toBe(true)
+    }
   })
 })

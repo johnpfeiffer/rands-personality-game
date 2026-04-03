@@ -1,5 +1,6 @@
 import { Button, Container, Typography } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
+import { questions } from '../data'
 
 export default function HomePage() {
   const navigate = useNavigate()
@@ -11,7 +12,7 @@ export default function HomePage() {
         Which Rands Personality Are You?
       </Typography>
       <Typography variant="body1" sx={{ mb: 4 }}>
-        Answer 10 questions to discover your management archetype, inspired by
+        Answer {questions.length} questions to discover your management archetype, inspired by
         Rands in Repose.
       </Typography>
       <Button

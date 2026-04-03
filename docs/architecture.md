@@ -49,7 +49,7 @@ flowchart TD
 ```mermaid
 flowchart LR
     A["/ (Home)"] -->|Click Start| B["/survey"]
-    B -->|Answer Q1..Q10| B
+    B -->|Answer Q1..Q20| B
     B -->|Last answer| C["/result/:id"]
     C -->|Take again| B
     C -->|Expand| D[Source Articles]
@@ -67,8 +67,8 @@ flowchart LR
 
 ### v2 — Quiz data
 
-- `data/personalities.json` defines the 10 MVP personality archetypes with descriptions and source article references.
-- `data/questions.json` defines versioned quiz questions with answers that carry sparse scores toward personalities.
+- `data/personalities.json` defines 20 personality archetypes with descriptions and source article references.
+- `data/questions.json` defines 20 versioned quiz questions with answers that carry sparse scores toward personalities.
 - No pipeline or scripts required — these files are hand-curated.
 
 ### v3 — React SPA (`app/`)
