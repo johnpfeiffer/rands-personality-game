@@ -14,7 +14,7 @@
         },
         {
           "text": "Take command of the situation — triage, delegate, and clear the path",
-          "scores": {"wolf": 3, "entropy-crusher": 1}
+          "scores": {"wolf": 3}
         },
         {
           "text": "Revert the risky change and ship what's stable now",
@@ -62,7 +62,7 @@
         },
         {
           "text": "Reassign it — put the right person on the right problem",
-          "scores": {"wolf": 2, "entropy-crusher": 1}
+          "scores": {"wolf": 2}
         }
       ]
     },
@@ -182,7 +182,7 @@
       "answers": [
         {
           "text": "Agenda, time-boxed, decisions documented, next actions assigned",
-          "scores": {"mechanic": 2, "entropy-crusher": 2}
+          "scores": {"mechanic": 2, "entropy-crusher": 1}
         },
         {
           "text": "I avoid meetings — just send me the doc and I'll comment",
@@ -326,7 +326,7 @@
         },
         {
           "text": "I turn it into process changes — new alerts, new runbooks, new owners",
-          "scores": {"optimizer": 2, "entropy-crusher": 1}
+          "scores": {"optimizer": 2, "mechanic": 1}
         }
       ]
     },
@@ -414,7 +414,7 @@
         },
         {
           "text": "Take charge — assign actions and end the meeting",
-          "scores": {"wolf": 2, "entropy-crusher": 1}
+          "scores": {"wolf": 2, "dictator": 1}
         }
       ]
     },
