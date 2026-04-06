@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes, Outlet } from 'react-router-dom'
 import HomePage from './HomePage'
-import { questions } from '../data'
 import type { AppContext } from '../App'
 
 function TestLayout() {
@@ -28,9 +27,9 @@ describe('HomePage', () => {
     expect(screen.getByRole('button', { name: /start the quiz/i })).toBeInTheDocument()
   })
 
-  it('displays the actual question count', () => {
+  it('displays the subtitle text', () => {
     renderPage()
-    expect(screen.getByText(new RegExp(`Answer ${questions.length} questions`))).toBeInTheDocument()
+    expect(screen.getByText(/Answer a few questions/)).toBeInTheDocument()
   })
 
   it('navigates to /survey when start is clicked', async () => {

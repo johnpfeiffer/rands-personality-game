@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter, Outlet, useParams } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, Navigate, Outlet, useParams } from 'react-router-dom'
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import HomePage from './views/HomePage'
 import SurveyPage from './views/SurveyPage'
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         index: true,
-        element: <HomePage />,
+        element: <Navigate to="/rands" replace />,
       },
     ],
   },

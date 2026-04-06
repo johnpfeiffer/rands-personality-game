@@ -1,6 +1,5 @@
 import { Button, Container, Typography } from '@mui/material'
 import { useNavigate, useOutletContext } from 'react-router-dom'
-import { questions } from '../data'
 import type { AppContext } from '../App'
 
 export default function HomePage() {
@@ -14,7 +13,7 @@ export default function HomePage() {
         Which Rands Personality Are You?
       </Typography>
       <Typography variant="body1" sx={{ mb: 4 }}>
-        Answer {questions.length} questions to discover your management archetype, inspired by
+        Answer a few questions to discover your management archetype, inspired by
         Rands in Repose.
       </Typography>
       <Button
