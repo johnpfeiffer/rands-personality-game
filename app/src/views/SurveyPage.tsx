@@ -6,14 +6,15 @@ import {
   Typography,
   Stack,
 } from '@mui/material'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 import { questions, personalities } from '../data'
 import { tallyScores, rankResults } from '../models/scoring'
 import type { Answer } from '../models/types'
+import type { AppContext } from '../App'
 
 export default function SurveyPage() {
   const navigate = useNavigate()
-  const { app = 'rands-game' } = useParams()
+  const { app } = useOutletContext<AppContext>()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedAnswers, setSelectedAnswers] = useState<Answer[]>([])
 

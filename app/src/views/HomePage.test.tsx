@@ -1,14 +1,23 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, Route, Routes, Outlet } from 'react-router-dom'
 import HomePage from './HomePage'
 import { questions } from '../data'
+import type { AppContext } from '../App'
+
+function TestLayout() {
+  return <Outlet context={{ app: 'test' } satisfies AppContext} />
+}
 
 const renderPage = () =>
   render(
-    <MemoryRouter>
-      <HomePage />
+    <MemoryRouter initialEntries={['/test']}>
+      <Routes>
+        <Route path="/:app" element={<TestLayout />}>
+          <Route index element={<HomePage />} />
+        </Route>
+      </Routes>
     </MemoryRouter>,
   )
 

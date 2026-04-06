@@ -1,13 +1,20 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { MemoryRouter, Route, Routes, Outlet } from 'react-router-dom'
 import ResultPage from './ResultPage'
+import type { AppContext } from '../App'
+
+function TestLayout() {
+  return <Outlet context={{ app: 'test' } satisfies AppContext} />
+}
 
 const renderWithRoute = (id: string, state?: object) =>
   render(
-    <MemoryRouter initialEntries={[{ pathname: `/result/${id}`, state }]}>
+    <MemoryRouter initialEntries={[{ pathname: `/test/result/${id}`, state }]}>
       <Routes>
-        <Route path="/result/:id" element={<ResultPage />} />
+        <Route path="/:app" element={<TestLayout />}>
+          <Route path="result/:id" element={<ResultPage />} />
+        </Route>
       </Routes>
     </MemoryRouter>,
   )

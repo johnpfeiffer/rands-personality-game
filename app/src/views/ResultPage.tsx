@@ -10,14 +10,16 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material'
-import { useParams, useNavigate, useLocation } from 'react-router-dom'
+import { useParams, useNavigate, useLocation, useOutletContext } from 'react-router-dom'
 import { getPersonalityById, personalities } from '../data'
 import { rankResults } from '../models/scoring'
+import type { AppContext } from '../App'
 
 const RANDS_BASE = 'https://randsinrepose.com/archives/'
 
 export default function ResultPage() {
-  const { id, app = 'rands-game' } = useParams<{ id: string; app: string }>()
+  const { id } = useParams<{ id: string }>()
+  const { app } = useOutletContext<AppContext>()
   const navigate = useNavigate()
   const location = useLocation()
   const totals = (location.state as { totals?: Record<string, number> } | null)?.totals

@@ -1,8 +1,15 @@
-import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, Outlet, useParams } from 'react-router-dom'
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import HomePage from './views/HomePage'
 import SurveyPage from './views/SurveyPage'
 import ResultPage from './views/ResultPage'
+
+export type AppContext = { app: string }
+
+function AppLayout() {
+  const { app = '' } = useParams()
+  return <Outlet context={{ app } satisfies AppContext} />
+}
 
 const theme = createTheme({
   palette: { mode: 'light' },
@@ -26,15 +33,21 @@ const router = createBrowserRouter([
     children: [
       {
         path: ':app',
-        element: <HomePage />,
-      },
-      {
-        path: ':app/survey',
-        element: <SurveyPage />,
-      },
-      {
-        path: ':app/result/:id',
-        element: <ResultPage />,
+        element: <AppLayout />,
+        children: [
+          {
+            index: true,
+            element: <HomePage />,
+          },
+          {
+            path: 'survey',
+            element: <SurveyPage />,
+          },
+          {
+            path: 'result/:id',
+            element: <ResultPage />,
+          },
+        ],
       },
       {
         index: true,

@@ -1,10 +1,12 @@
 import { Button, Container, Typography } from '@mui/material'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 import { questions } from '../data'
+import type { AppContext } from '../App'
 
 export default function HomePage() {
   const navigate = useNavigate()
-  const { app = 'rands-game' } = useParams()
+  const context = useOutletContext<AppContext | null>()
+  const app = context?.app ?? ''
 
   return (
     <Container maxWidth="sm" sx={{ textAlign: 'center', mt: 8 }}>
