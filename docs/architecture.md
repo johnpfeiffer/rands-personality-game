@@ -33,7 +33,10 @@ flowchart TD
 
     subgraph v3 [React SPA]
         DataImport[Static JSON imports] --> ScoringModel[scoring.ts]
-        ScoringModel --> SurveyView[SurveyPage]
+        DataImport --> QuestionEngine[question-engine.ts]
+        QuestionEngine -->|picks next best question| SurveyView[SurveyPage]
+        QuestionEngine -->|early termination| SurveyView
+        ScoringModel --> SurveyView
         ScoringModel --> ResultView[ResultPage]
         HomeView[HomePage] -->|Start Quiz| SurveyView
         SurveyView -->|Navigate on completion| ResultView
@@ -49,8 +52,8 @@ flowchart TD
 ```mermaid
 flowchart LR
     A["/ (Home)"] -->|Click Start| B["/survey"]
-    B -->|Answer Q1..Q20| B
-    B -->|Last answer| C["/result/:id"]
+    B -->|Engine picks next best Q| B
+    B -->|Leader uncatchable or all Q done| C["/result/:id"]
     C -->|Take again| B
     C -->|Expand| D[Source Articles]
     C -->|Expand| E[Full Scores]
@@ -73,7 +76,8 @@ flowchart LR
 
 ### v3 — React SPA (`app/`)
 
-- **Models** (`src/models/`): Domain types (`types.ts`) and scoring logic (`scoring.ts`) — pure functions, no React dependency.
+- **Models** (`src/models/`): Domain types (`types.ts`), scoring logic (`scoring.ts`), and adaptive question engine (`question-engine.ts`) — pure functions, no React dependency.
+  - The question engine uses Bayesian posterior updates and expected information gain to select the most discriminating question at each step, with early termination when the leader is mathematically uncatchable or probabilistically dominant.
 - **Data** (`src/data/`): Static JSON imports with a typed accessor (`getPersonalityById`).
 - **Views** (`src/views/`): Three route-level components — `HomePage`, `SurveyPage`, `ResultPage`.
 - **Routing**: React Router with `/`, `/survey`, `/result/:id`.
