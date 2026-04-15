@@ -9,6 +9,14 @@ These most authentic and high signal questions will receive a weighting/priority
 
 For MVP create at least 3 of these highest priority questions
 
+### Follow on Question Feature
+
+Some questions/scenarios may produce an answer that logically has a (valuable/necessary) successor.
+
+Let's say the question is about low performance: if the decision/answer was to let the low performer go - the subsequent question should be about how to manage an exit.
+
+So there should be an addition to the Question data structure to indicate when an Answer has a followup
+
 ## Search Algorithm Improvements
 
 For determining the next question, utilize A*
