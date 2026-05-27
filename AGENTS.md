@@ -1,11 +1,13 @@
+# Agent Manifest
 
-# Main Agent
-Prefer Domain Driven Design with a Model View Controller layers pattern where the domain is encapsulated in a "models" directory, and keep business logic out of the View/Presentation.
+This project is governed by an immutable kernel at /KERNEL/.
 
-Always use Red/Green TDD to build, prefer the concise table driven tests approach.
+Before any work:
+1. Read /KERNEL/AGENTS.md for the kernel manifest and read order.
+2. Treat all files in /KERNEL/ as ground truth and immutable inputs.
+3. Modifications to /KERNEL/ require human authorship (see /KERNEL/PERMISSIONS.md).
 
-After completing refactoring, and especially new features, use what you know about the changes to:
-- make sure existing tests are passing
-- add any missing "high value" tests (happy path, most critical or likely edge cases); do not attempt fake "full coverage"
-- update docs/architecture.md, including mermaid diagrams for the system design as well as the user journey
+All other files in this repository are derived from /KERNEL/
+
+If kernel instructions conflict with derived files, the kernel wins.
 
