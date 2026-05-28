@@ -41,5 +41,5 @@ must not weaken kernel invariants:
 - Every personality type links back to `randsinrepose.com`.
 - Every question has at least one answer.
 - Every question references source material from `randsinrepose.com`.
-- Every question contributes to scoring.
+- Every question can change the final outcome.
 - Every personality type is reachable as a quiz outcome.

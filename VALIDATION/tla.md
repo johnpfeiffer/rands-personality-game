@@ -14,21 +14,20 @@ The model focuses only on the six MVP kernel invariants:
 - every personality has at least one Rands in Repose source
 - every question has at least one answer
 - every question has at least one Rands in Repose source
-- every question contributes to scoring
+- every question can change the final outcome
 - every personality is reachable as an outcome
 
 ## Abstractions
 
-The spec intentionally abstracts the reachability computation behind literal
-model data for `ReachableOutcomes`.
-
-For implementation validation, `ReachableOutcomes` should be computed from the
-real personality and question JSON data by tests or a model-generation script.
+The spec computes winners from complete answer selections and deterministic
+tie-break order. `INV005` requires a pair of complete selections that differ
+only at the target question and produce different winners. `INV006` requires a
+complete selection that wins for each personality.
 
 ## Suggested Next Step
 
 Replace the hand-written bounded config with a generator that reads the
-application JSON data and emits a TLC model configuration. Keep generated
+application JSON data and emits literal TLC model data. Keep generated
 validation artifacts outside `KERNEL/`.
 
 ## Verification

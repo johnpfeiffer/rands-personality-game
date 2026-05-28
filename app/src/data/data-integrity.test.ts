@@ -15,6 +15,83 @@ function bestAnswerForPersonality(question: Question, personalityId: string): An
   )
 }
 
+function chooseAnswer(question: Question, scoreAnswer: (answer: Answer) => number): Answer {
+  return question.answers.reduce((best, answer) =>
+    scoreAnswer(answer) > scoreAnswer(best) ? answer : best,
+  )
+}
+
+function winnerIdForAnswers(answers: Answer[]): string {
+  return rankResults(tallyScores(answers), personalities)[0].personality.id
+}
+
+function selectionKey(selection: Answer[]): string {
+  return selection.map((answer) => answer.text).join('\u0000')
+}
+
+function candidateOutcomeChangingSelections(): Answer[][] {
+  const selections = new Map<string, Answer[]>()
+  const addSelection = (selection: Answer[]) => {
+    selections.set(selectionKey(selection), selection)
+  }
+
+  addSelection(questions.map((question) => question.answers[0]))
+
+  for (const personality of personalities) {
+    addSelection(
+      questions.map((question) => bestAnswerForPersonality(question, personality.id)),
+    )
+    addSelection(
+      questions.map((question) =>
+        chooseAnswer(question, (answer) => -(answer.scores[personality.id] ?? 0)),
+      ),
+    )
+  }
+
+  for (const first of personalities) {
+    for (const second of personalities) {
+      if (first.id === second.id) continue
+
+      addSelection(
+        questions.map((question) =>
+          chooseAnswer(
+            question,
+            (answer) => (answer.scores[first.id] ?? 0) - (answer.scores[second.id] ?? 0),
+          ),
+        ),
+      )
+    }
+  }
+
+  return [...selections.values()]
+}
+
+function questionCanChangeOutcome(questionIndex: number, candidateSelections: Answer[][]): boolean {
+  const question = questions[questionIndex]
+
+  for (const selection of candidateSelections) {
+    for (let firstIndex = 0; firstIndex < question.answers.length; firstIndex += 1) {
+      for (
+        let secondIndex = firstIndex + 1;
+        secondIndex < question.answers.length;
+        secondIndex += 1
+      ) {
+        const firstSelection = [...selection]
+        const secondSelection = [...selection]
+
+        firstSelection[questionIndex] = question.answers[firstIndex]
+        secondSelection[questionIndex] = question.answers[secondIndex]
+
+        if (winnerIdForAnswers(firstSelection) !== winnerIdForAnswers(secondSelection)) {
+          return true
+        }
+      }
+    }
+  }
+
+  return false
+}
+
 describe('kernel data invariants', () => {
   it('INV-001: defines at least one personality type', () => {
     expect(personalities.length).toBeGreaterThan(0)
@@ -52,13 +129,14 @@ describe('kernel data invariants', () => {
     }
   })
 
-  it('INV-005: every question contributes to at least one score', () => {
-    for (const question of questions) {
-      const hasScoreContribution = question.answers.some((answer) =>
-        Object.values(answer.scores).some((score) => score !== 0),
-      )
+  it('INV-005: every question can change the final outcome', () => {
+    const candidateSelections = candidateOutcomeChangingSelections()
 
-      expect(hasScoreContribution, `${question.id} must modify a score`).toBe(true)
+    for (const [questionIndex, question] of questions.entries()) {
+      expect(
+        questionCanChangeOutcome(questionIndex, candidateSelections),
+        `${question.id} must have answers that change the winner`,
+      ).toBe(true)
     }
   })
 

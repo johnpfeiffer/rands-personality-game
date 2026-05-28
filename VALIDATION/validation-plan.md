@@ -40,7 +40,7 @@ and network access is available.
 | INV-002 | Every personality links to Rands in Repose. | Data test validates source URLs or derived URLs from slugs. |
 | INV-003 | Every question has at least one answer. | Data test validates non-empty `answers`. |
 | INV-004 | Every question references source data. | Data test validates question `source_slugs` or `source_urls`. |
-| INV-005 | Every question contributes to score. | Data test validates at least one non-zero score across answers. |
+| INV-005 | Every question can change the final outcome. | Data test finds answer choices that produce different winners while other answers are fixed. |
 | INV-006 | Every personality is reachable. | Reachability test searches answer paths or uses a deterministic solver. |
 
 ## Product Requirement Proof Matrix
@@ -62,7 +62,7 @@ and network access is available.
 - Personality source not on `randsinrepose.com` fails.
 - Question without answers fails.
 - Question without source references fails.
-- Question with only zero or empty scores fails.
+- Question whose answers cannot change the final winner fails.
 - Answer score key not matching a personality id fails.
 - Duplicate personality id fails.
 - Duplicate question id fails.

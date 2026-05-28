@@ -70,7 +70,7 @@ The app validates the six kernel invariants in
 - every personality has source slugs that resolve to Rands in Repose links
 - every question has at least one answer
 - every question has source slugs that resolve to Rands in Repose links
-- every question modifies at least one score
+- every question has answer choices that can change the final winner
 - every personality is reachable through answer choices
 
 ## TLA+

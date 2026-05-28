@@ -57,9 +57,10 @@ Rules:
 
 - Every question must have at least one answer.
 - Every question must reference source material from Rands in Repose.
-- Every question must contribute to scoring.
-- A question contributes when at least one answer has at least one non-zero
-  personality score.
+- Every question must be able to change the final outcome.
+- A question can change the outcome when two of its answers can produce
+  different winning personality types while the rest of the answer path is held
+  fixed.
 - Reworded or rebalanced questions should use a new versioned id.
 
 ## Scoring Data

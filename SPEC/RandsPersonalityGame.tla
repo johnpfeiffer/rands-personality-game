@@ -19,11 +19,11 @@ CONSTANTS
     Answers,
     RandsSources,
     ScoreValues,
+    PersonalityOrderPairs,
     PersonalitySourcePairs,
     QuestionSourcePairs,
     QuestionAnswerPairs,
-    AnswerScoreTriples,
-    ReachableOutcomes
+    AnswerScoreTriples
 
 PersonalitySources(p) ==
     {src \in RandsSources : <<p, src>> \in PersonalitySourcePairs}
@@ -33,6 +33,37 @@ QuestionSources(q) ==
 
 QuestionAnswers(q) ==
     {a \in Answers : <<q, a>> \in QuestionAnswerPairs}
+
+ScoresFor(a, p) ==
+    {n \in ScoreValues : <<a, p, n>> \in AnswerScoreTriples}
+
+AnswerScore(a, p) ==
+    IF ScoresFor(a, p) = {} THEN 0 ELSE CHOOSE n \in ScoresFor(a, p) : TRUE
+
+PersonalityOrder(p) ==
+    CHOOSE n \in 1..Cardinality(Personalities) : <<p, n>> \in PersonalityOrderPairs
+
+CompleteSelections ==
+    {selection \in [Questions -> Answers] :
+        \A q \in Questions : selection[q] \in QuestionAnswers(q)}
+
+RECURSIVE SumScores(_, _, _)
+
+SumScores(remaining, selection, p) ==
+    IF remaining = {} THEN 0
+    ELSE
+        LET q == CHOOSE question \in remaining : TRUE
+        IN AnswerScore(selection[q], p) + SumScores(remaining \ {q}, selection, p)
+
+Score(selection, p) ==
+    SumScores(Questions, selection, p)
+
+Winner(selection) ==
+    CHOOSE p \in Personalities :
+        /\ \A rival \in Personalities : Score(selection, p) >= Score(selection, rival)
+        /\ \A rival \in Personalities :
+            (Score(selection, p) = Score(selection, rival) =>
+                PersonalityOrder(p) <= PersonalityOrder(rival))
 
 INV001 ==
     Personalities # {}
@@ -48,13 +79,14 @@ INV004 ==
 
 INV005 ==
     \A q \in Questions :
-        \E a \in QuestionAnswers(q) :
-            \E p \in Personalities :
-                \E n \in ScoreValues :
-                    /\ <<a, p, n>> \in AnswerScoreTriples
-                    /\ n # 0
+        \E first \in CompleteSelections :
+            \E second \in CompleteSelections :
+                /\ first[q] # second[q]
+                /\ \A other \in Questions \ {q} : first[other] = second[other]
+                /\ Winner(first) # Winner(second)
 
 INV006 ==
-    ReachableOutcomes = Personalities
+    \A p \in Personalities :
+        \E selection \in CompleteSelections : Winner(selection) = p
 
 =============================================================================

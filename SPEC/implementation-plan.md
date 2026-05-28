@@ -19,7 +19,7 @@ This plan is AI-derived and must not be treated as authority over `KERNEL/`.
 3. Validate every personality has at least one Rands source reference.
 4. Validate every question has at least one answer.
 5. Validate every question has source grounding.
-6. Validate every question modifies at least one score.
+6. Validate every question can change the final winner.
 7. Validate every personality is reachable through a complete answer path.
 
 ## Phase 2: Source Ingestion
