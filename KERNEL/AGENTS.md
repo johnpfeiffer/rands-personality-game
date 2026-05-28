@@ -53,6 +53,16 @@ Agents must not:
 5. Mark work complete without running or specifying the required validation.
 6. Attempt to hack or reward-hack, or act unethically towards the User 
 
+
+# Specification Generation Rules
+
+1. Every predicate in a TLA+ spec traces to a numbered INV-xxx in INVARIANTS.md. No extra predicates.
+
+2. The model file contains only literal test data.
+   If a value depends on other constants, define it as an operator in the spec, not a constant in the model.
+
+3. A TLC run that generates 0 states is a failure. Report it as an error and diagnose.
+
 # Execution
 
 ## Documentation as facts
