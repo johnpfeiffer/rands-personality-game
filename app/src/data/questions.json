@@ -122,47 +122,6 @@
       ]
     },
     {
-      "id": "q4-v1",
-      "text": "Someone proposes replacing a core system with new technology. Your reaction?",
-      "answers": [
-        {
-          "text": "We tried that in 2019. Let me tell you what happened.",
-          "scores": {
-            "old-guard": 3
-          }
-        },
-        {
-          "text": "Let's prototype it in a week and see if it actually works",
-          "scores": {
-            "incrementalist": 2,
-            "free-electron": 1
-          }
-        },
-        {
-          "text": "Show me the migration plan, rollback strategy, and success metrics",
-          "scores": {
-            "mechanic": 2,
-            "completionist": 1
-          }
-        },
-        {
-          "text": "If the team's excited about it, that energy is worth exploring",
-          "scores": {
-            "organic": 3
-          }
-        }
-      ],
-      "source_slugs": [
-        "the-old-guard",
-        "the-guard",
-        "the-process-myth",
-        "incrementalists-completionists",
-        "the-truth-versus-spin",
-        "organics-and-mechanics",
-        "signs-of-art"
-      ]
-    },
-    {
       "id": "q5-v1",
       "text": "How do you prefer to work on a big problem?",
       "answers": [
@@ -240,87 +199,6 @@
       ]
     },
     {
-      "id": "q7-v2",
-      "text": "Your team has a conflict between two senior engineers. What do you do?",
-      "answers": [
-        {
-          "text": "Talk to each privately, read the real dynamic, then bring them together",
-          "scores": {
-            "organic": 3,
-            "coach": 1
-          }
-        },
-        {
-          "text": "Make the call yourself — someone has to decide",
-          "scores": {
-            "wolf": 3,
-            "dictator": 1
-          }
-        },
-        {
-          "text": "Set up a structured decision framework so it's not personal",
-          "scores": {
-            "mechanic": 3
-          }
-        },
-        {
-          "text": "Stay steady and keep both sides focused on the shared goal",
-          "scores": {
-            "anchor": 3
-          }
-        }
-      ],
-      "source_slugs": [
-        "organics-and-mechanics",
-        "signs-of-art",
-        "the-coach-and-the-fixer",
-        "the-wolf",
-        "sometimes-your-job-is-to-stay-the-hell-out-of-the-way",
-        "three-bad-managers",
-        "three-superpowers",
-        "meeting-creatur"
-      ]
-    },
-    {
-      "id": "q8-v1",
-      "text": "A feature is 90% done but the last 10% is painful. What now?",
-      "answers": [
-        {
-          "text": "Ship the 90% — users get value now, we polish later",
-          "scores": {
-            "incrementalist": 3,
-            "fixer": 1
-          }
-        },
-        {
-          "text": "Finish it properly — the last 10% is what separates good from great",
-          "scores": {
-            "completionist": 3
-          }
-        },
-        {
-          "text": "I'll just knock out that last 10% myself this weekend",
-          "scores": {
-            "fixer": 2,
-            "free-electron": 1
-          }
-        },
-        {
-          "text": "Identify exactly what's blocking and assign clear owners for each piece",
-          "scores": {
-            "entropy-crusher": 3
-          }
-        }
-      ],
-      "source_slugs": [
-        "incrementalists-completionists",
-        "a-deep-breath",
-        "the-coach-and-the-fixer",
-        "the-truth-versus-spin",
-        "entropy-crushers"
-      ]
-    },
-    {
       "id": "q9-v1",
       "text": "What's your meeting style?",
       "answers": [
@@ -368,52 +246,6 @@
       ]
     },
     {
-      "id": "q10-v1",
-      "text": "Your company announces a major reorg. Your first thought?",
-      "answers": [
-        {
-          "text": "Who's going to be confused? Let me get ahead of the chaos",
-          "scores": {
-            "entropy-crusher": 3
-          }
-        },
-        {
-          "text": "I've seen this movie before — I know how it ends",
-          "scores": {
-            "old-guard": 3
-          }
-        },
-        {
-          "text": "Let me talk to my people and find out how they're really feeling",
-          "scores": {
-            "organic": 2,
-            "coach": 2,
-            "anchor": 1
-          }
-        },
-        {
-          "text": "New structure, new opportunities — where's the most interesting problem now?",
-          "scores": {
-            "free-electron": 2,
-            "wolf": 1
-          }
-        }
-      ],
-      "source_slugs": [
-        "entropy-crushers",
-        "the-old-guard",
-        "the-guard",
-        "the-process-myth",
-        "organics-and-mechanics",
-        "signs-of-art",
-        "the-coach-and-the-fixer",
-        "meeting-creatur",
-        "the-truth-versus-spin",
-        "the-wolf",
-        "sometimes-your-job-is-to-stay-the-hell-out-of-the-way"
-      ]
-    },
-    {
       "id": "q11-v1",
       "text": "You need to communicate a difficult decision to the team. How do you deliver it?",
       "answers": [
@@ -450,92 +282,6 @@
         "three-bad-managers",
         "three-superpowers",
         "stimulus-driven-creatures"
-      ]
-    },
-    {
-      "id": "q12-v1",
-      "text": "You join a new company. What do you do in your first two weeks?",
-      "answers": [
-        {
-          "text": "Wander around — sit in on meetings, read old docs, talk to everyone I can find",
-          "scores": {
-            "wanderer": 3
-          }
-        },
-        {
-          "text": "Question everything — why is this process so slow? Why do we use this tool?",
-          "scores": {
-            "new-guard": 3
-          }
-        },
-        {
-          "text": "Find the messiest problem and start proposing fixes immediately",
-          "scores": {
-            "fixer": 2,
-            "builder": 1
-          }
-        },
-        {
-          "text": "Map out the org chart, learn who has influence, and build relationships",
-          "scores": {
-            "handler": 2,
-            "organic": 1
-          }
-        }
-      ],
-      "source_slugs": [
-        "the-wanderer",
-        "the-old-guard",
-        "the-guard",
-        "the-process-myth",
-        "a-deep-breath",
-        "the-coach-and-the-fixer",
-        "one-thing",
-        "knee-jerks",
-        "organics-and-mechanics",
-        "signs-of-art"
-      ]
-    },
-    {
-      "id": "q13-v1",
-      "text": "What kind of project excites you most?",
-      "answers": [
-        {
-          "text": "A brand-new product built from scratch with a small team",
-          "scores": {
-            "builder": 3,
-            "free-electron": 1
-          }
-        },
-        {
-          "text": "Taking a slow, bloated system and making it 10x faster",
-          "scores": {
-            "optimizer": 3
-          }
-        },
-        {
-          "text": "A complex cross-team initiative where I'm the one connecting the dots",
-          "scores": {
-            "handler": 2,
-            "wanderer": 1
-          }
-        },
-        {
-          "text": "One where I get to write the vision doc that rallies everyone behind it",
-          "scores": {
-            "poet": 2,
-            "storyteller": 1
-          }
-        }
-      ],
-      "source_slugs": [
-        "one-thing",
-        "the-truth-versus-spin",
-        "stimulus-driven-creatures",
-        "knee-jerks",
-        "the-wanderer",
-        "poets-and-police",
-        "the-button"
       ]
     },
     {
@@ -663,42 +409,6 @@
       ]
     },
     {
-      "id": "q17-v1",
-      "text": "Your skip-level wants a summary of your team's quarter. How do you prepare?",
-      "answers": [
-        {
-          "text": "I tell the story of the quarter — the arc from challenge to outcome",
-          "scores": {
-            "storyteller": 3
-          }
-        },
-        {
-          "text": "One page, three bullet points, done",
-          "scores": {
-            "distiller": 3
-          }
-        },
-        {
-          "text": "I know exactly what this exec cares about and I frame everything around that",
-          "scores": {
-            "handler": 3
-          }
-        },
-        {
-          "text": "I write a beautifully clear document that speaks for itself",
-          "scores": {
-            "poet": 3
-          }
-        }
-      ],
-      "source_slugs": [
-        "stimulus-driven-creatures",
-        "knee-jerks",
-        "poets-and-police",
-        "the-button"
-      ]
-    },
-    {
       "id": "q18-v1",
       "text": "What's your instinct when you see a team you're not on struggling?",
       "answers": [
@@ -738,50 +448,6 @@
         "knee-jerks",
         "one-thing",
         "stimulus-driven-creatures"
-      ]
-    },
-    {
-      "id": "q19-v1",
-      "text": "How do you handle a high-pressure room where tempers are flaring?",
-      "answers": [
-        {
-          "text": "Be the calm center — lower my voice, slow the pace, ground the room",
-          "scores": {
-            "anchor": 3
-          }
-        },
-        {
-          "text": "Cut through the emotion — state the facts and force us back to the issue",
-          "scores": {
-            "dictator": 2,
-            "distiller": 1
-          }
-        },
-        {
-          "text": "Read the room — figure out what's really driving the tension",
-          "scores": {
-            "organic": 2,
-            "wanderer": 1
-          }
-        },
-        {
-          "text": "Take charge — assign actions and end the meeting",
-          "scores": {
-            "wolf": 2,
-            "dictator": 1
-          }
-        }
-      ],
-      "source_slugs": [
-        "meeting-creatur",
-        "three-bad-managers",
-        "three-superpowers",
-        "knee-jerks",
-        "organics-and-mechanics",
-        "signs-of-art",
-        "the-wanderer",
-        "the-wolf",
-        "sometimes-your-job-is-to-stay-the-hell-out-of-the-way"
       ]
     },
     {

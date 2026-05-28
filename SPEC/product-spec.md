@@ -35,6 +35,7 @@ flowchart LR
 ## Functional Requirements
 
 - The app asks all questions from the question bank in linear order.
+- The question bank contains at most 12 questions.
 - Each answer contributes sparse score weights to one or more personalities.
 - Scores are accumulated as the user answers questions.
 - The result is the highest-ranked personality after all questions are answered.

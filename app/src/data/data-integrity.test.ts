@@ -4,6 +4,7 @@ import { rankResults, tallyScores } from '../models/scoring'
 import type { Answer, Question } from '../models/types'
 
 const RANDS_BASE = 'https://randsinrepose.com/archives/'
+const MAX_QUESTIONS = 12
 
 function sourceUrl(slug: string): string {
   return `${RANDS_BASE}${slug}/`
@@ -114,6 +115,10 @@ describe('kernel data invariants', () => {
     for (const question of questions) {
       expect(question.answers.length, `${question.id} must have answers`).toBeGreaterThan(0)
     }
+  })
+
+  it('requirements-v3: question bank has at most twelve questions', () => {
+    expect(questions.length).toBeLessThanOrEqual(MAX_QUESTIONS)
   })
 
   it('INV-004: every question references Rands source data', () => {

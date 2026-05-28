@@ -55,7 +55,8 @@ flowchart LR
   selected answers, completion, restart state, and progress.
 - `app/src/models/scoring.ts` owns sparse score aggregation and deterministic
   result ranking.
-- `app/src/data/` owns static curated personality and question JSON.
+- `app/src/data/` owns static curated personality and question JSON. The MVP
+  question bank is capped at 12 questions.
 - `app/src/views/` owns presentation, routing, and user interaction.
 
 Business logic should stay in `models`; React views should call model functions

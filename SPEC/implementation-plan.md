@@ -18,9 +18,10 @@ This plan is AI-derived and must not be treated as authority over `KERNEL/`.
 2. Validate at least one personality exists.
 3. Validate every personality has at least one Rands source reference.
 4. Validate every question has at least one answer.
-5. Validate every question has source grounding.
-6. Validate every question can change the final winner.
-7. Validate every personality is reachable through a complete answer path.
+5. Validate the question bank has at most 12 questions.
+6. Validate every question has source grounding.
+7. Validate every question can change the final winner.
+8. Validate every personality is reachable through a complete answer path.
 
 ## Phase 2: Source Ingestion
 

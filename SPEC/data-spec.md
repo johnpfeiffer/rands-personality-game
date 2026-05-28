@@ -56,6 +56,7 @@ Flat JSON question records define the quiz.
 Rules:
 
 - Every question must have at least one answer.
+- The question bank must contain at most 12 questions.
 - Every question must reference source material from Rands in Repose.
 - Every question must be able to change the final outcome.
 - A question can change the outcome when two of its answers can produce

@@ -48,6 +48,7 @@ and network access is available.
 | Requirement | Proof obligation | Suggested validation |
 | --- | --- | --- |
 | Linear MVP flow. | Questions are asked in question-bank order. | Survey view test. |
+| At most 12 questions. | Question bank length is capped at 12. | Data test counts questions. |
 | Restart resets all state. | Previous answers and scores are cleared. | Survey and result view tests. |
 | No back-editing in MVP. | UI offers no previous-answer mutation path. | Survey view test. |
 | Readable result URL. | Result route includes personality id. | Router/view test. |
@@ -63,6 +64,7 @@ and network access is available.
 - Question without answers fails.
 - Question without source references fails.
 - Question whose answers cannot change the final winner fails.
+- Question bank with more than 12 questions fails.
 - Answer score key not matching a personality id fails.
 - Duplicate personality id fails.
 - Duplicate question id fails.

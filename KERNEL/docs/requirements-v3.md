@@ -13,6 +13,9 @@ To build the MVP react SPA application that asks the users questions and then di
 - display of the personality should show all the scores once expanded
 - - the result personality should have a link to the reference articles from Rands blog
 
+
+- At most 12 questions
+
 ## Design
 
 - Please use a minimalist Light Mode approach, preferring ascii and text over images
