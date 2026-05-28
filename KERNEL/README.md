@@ -23,6 +23,13 @@ Example source data downloader: `python3 download_rands_posts.py` to fetch posts
 
 # Validation
 
+Model checking:
+
+`cd VALIDATION`
+`uv run tla tlc RandsPersonalityGameInvariantCheck.tla`
+
+## Testing
+
 ```bash
 cd app
 npm test

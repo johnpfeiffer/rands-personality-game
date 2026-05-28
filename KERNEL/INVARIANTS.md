@@ -16,9 +16,9 @@ Every personality type must have at least 1 source link back to randsinrepose.co
 
 Questions must be grounded from source data from randsinrepose.com
 
-## INV-005: Each Question contributes to the score
+## INV-005: Every question can change the outcome
 
-Every question must modify at least one score
+For each question, there exist answer choices that produce different final personality types.
 
 ## INV-006: Each Personality Type must be reachable
 
