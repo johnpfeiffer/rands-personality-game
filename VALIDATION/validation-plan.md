@@ -10,9 +10,17 @@ invariants and MVP requirements.
 For app changes:
 
 ```bash
-rtk npm --prefix app exec vitest run
-rtk npm --prefix app run lint
-rtk npm --prefix app run build
+cd app
+npm test
+npm run build
+```
+
+Run lint for implementation changes that touch TypeScript, React, or build
+configuration:
+
+```bash
+cd app
+npm run lint
 ```
 
 For source ingestion changes:

@@ -1,9 +1,13 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+// @vitest-environment jsdom
+import '@testing-library/jest-dom/vitest'
+import { afterEach, describe, it, expect } from 'vitest'
+import { cleanup, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes, Outlet } from 'react-router-dom'
 import HomePage from './HomePage'
 import type { AppContext } from '../App'
+
+afterEach(cleanup)
 
 function TestLayout() {
   return <Outlet context={{ app: 'test' } satisfies AppContext} />

@@ -51,7 +51,8 @@ INV005 ==
         \E a \in QuestionAnswers(q) :
             \E p \in Personalities :
                 \E n \in ScoreValues :
-                    <<a, p, n>> \in AnswerScoreTriples /\ n # 0
+                    /\ <<a, p, n>> \in AnswerScoreTriples
+                    /\ n # 0
 
 INV006 ==
     ReachableOutcomes = Personalities

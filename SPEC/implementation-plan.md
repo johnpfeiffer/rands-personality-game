@@ -53,10 +53,12 @@ This plan is AI-derived and must not be treated as authority over `KERNEL/`.
 Run the relevant checks before marking work complete:
 
 ```bash
-rtk npm --prefix app exec vitest run
-rtk npm --prefix app run lint
-rtk npm --prefix app run build
+cd app
+npm test
+npm run build
 ```
+
+Also run `npm run lint` for TypeScript, React, or build-configuration changes.
 
 For TLA+ validation:
 

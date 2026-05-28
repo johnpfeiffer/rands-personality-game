@@ -13,6 +13,7 @@ export interface Answer {
 export interface Question {
   id: string
   text: string
+  source_slugs: string[]
   answers: Answer[]
 }
 

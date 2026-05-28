@@ -6,20 +6,42 @@
       "answers": [
         {
           "text": "Jump in and fix it yourself — you're fastest",
-          "scores": {"fixer": 3, "wolf": 1}
+          "scores": {
+            "fixer": 3,
+            "wolf": 1
+          }
         },
         {
           "text": "Walk the engineer through debugging it so they learn",
-          "scores": {"coach": 3}
+          "scores": {
+            "coach": 3
+          }
         },
         {
           "text": "Take command of the situation — triage, delegate, and clear the path",
-          "scores": {"wolf": 3}
+          "scores": {
+            "wolf": 3
+          }
         },
         {
           "text": "Revert the risky change and ship what's stable now",
-          "scores": {"incrementalist": 2, "old-guard": 1, "anchor": 1}
+          "scores": {
+            "incrementalist": 2,
+            "old-guard": 1,
+            "anchor": 1
+          }
         }
+      ],
+      "source_slugs": [
+        "a-deep-breath",
+        "the-coach-and-the-fixer",
+        "the-wolf",
+        "sometimes-your-job-is-to-stay-the-hell-out-of-the-way",
+        "incrementalists-completionists",
+        "the-old-guard",
+        "the-guard",
+        "the-process-myth",
+        "meeting-creatur"
       ]
     },
     {
@@ -28,20 +50,34 @@
       "answers": [
         {
           "text": "I talk to people — their tone and energy tell me everything",
-          "scores": {"organic": 3}
+          "scores": {
+            "organic": 3
+          }
         },
         {
           "text": "Dashboards, burndown charts, and status reports",
-          "scores": {"mechanic": 3}
+          "scores": {
+            "mechanic": 3
+          }
         },
         {
           "text": "Are we shipping increments regularly? Then we're fine",
-          "scores": {"incrementalist": 3}
+          "scores": {
+            "incrementalist": 3
+          }
         },
         {
           "text": "I check that every open question has an owner and a deadline",
-          "scores": {"entropy-crusher": 3}
+          "scores": {
+            "entropy-crusher": 3
+          }
         }
+      ],
+      "source_slugs": [
+        "organics-and-mechanics",
+        "signs-of-art",
+        "incrementalists-completionists",
+        "entropy-crushers"
       ]
     },
     {
@@ -50,20 +86,39 @@
       "answers": [
         {
           "text": "Pair with them and show them how to do it",
-          "scores": {"fixer": 2, "coach": 1}
+          "scores": {
+            "fixer": 2,
+            "coach": 1
+          }
         },
         {
           "text": "Ask questions until they find the answer themselves",
-          "scores": {"coach": 3}
+          "scores": {
+            "coach": 3
+          }
         },
         {
           "text": "Point them to the right documentation and check back later",
-          "scores": {"free-electron": 2, "mechanic": 1}
+          "scores": {
+            "free-electron": 2,
+            "mechanic": 1
+          }
         },
         {
           "text": "Reassign it — put the right person on the right problem",
-          "scores": {"wolf": 2}
+          "scores": {
+            "wolf": 2
+          }
         }
+      ],
+      "source_slugs": [
+        "a-deep-breath",
+        "the-coach-and-the-fixer",
+        "the-truth-versus-spin",
+        "organics-and-mechanics",
+        "signs-of-art",
+        "the-wolf",
+        "sometimes-your-job-is-to-stay-the-hell-out-of-the-way"
       ]
     },
     {
@@ -72,20 +127,39 @@
       "answers": [
         {
           "text": "We tried that in 2019. Let me tell you what happened.",
-          "scores": {"old-guard": 3}
+          "scores": {
+            "old-guard": 3
+          }
         },
         {
           "text": "Let's prototype it in a week and see if it actually works",
-          "scores": {"incrementalist": 2, "free-electron": 1}
+          "scores": {
+            "incrementalist": 2,
+            "free-electron": 1
+          }
         },
         {
           "text": "Show me the migration plan, rollback strategy, and success metrics",
-          "scores": {"mechanic": 2, "completionist": 1}
+          "scores": {
+            "mechanic": 2,
+            "completionist": 1
+          }
         },
         {
           "text": "If the team's excited about it, that energy is worth exploring",
-          "scores": {"organic": 3}
+          "scores": {
+            "organic": 3
+          }
         }
+      ],
+      "source_slugs": [
+        "the-old-guard",
+        "the-guard",
+        "the-process-myth",
+        "incrementalists-completionists",
+        "the-truth-versus-spin",
+        "organics-and-mechanics",
+        "signs-of-art"
       ]
     },
     {
@@ -94,20 +168,35 @@
       "answers": [
         {
           "text": "Give me the problem, close the door, and I'll come back with an answer",
-          "scores": {"free-electron": 3}
+          "scores": {
+            "free-electron": 3
+          }
         },
         {
           "text": "Break it into small pieces and start shipping the first one today",
-          "scores": {"incrementalist": 3}
+          "scores": {
+            "incrementalist": 3
+          }
         },
         {
           "text": "Understand the full scope before writing a single line of code",
-          "scores": {"completionist": 3}
+          "scores": {
+            "completionist": 3
+          }
         },
         {
           "text": "Figure out who's confused about what and start clarifying",
-          "scores": {"entropy-crusher": 2, "coach": 1}
+          "scores": {
+            "entropy-crusher": 2,
+            "coach": 1
+          }
         }
+      ],
+      "source_slugs": [
+        "the-truth-versus-spin",
+        "incrementalists-completionists",
+        "entropy-crushers",
+        "the-coach-and-the-fixer"
       ]
     },
     {
@@ -116,20 +205,38 @@
       "answers": [
         {
           "text": "Nobody knows who's responsible for what",
-          "scores": {"entropy-crusher": 3}
+          "scores": {
+            "entropy-crusher": 3
+          }
         },
         {
           "text": "People keep reinventing wheels that already work fine",
-          "scores": {"old-guard": 3}
+          "scores": {
+            "old-guard": 3
+          }
         },
         {
           "text": "We over-plan and under-ship",
-          "scores": {"incrementalist": 2, "fixer": 1}
+          "scores": {
+            "incrementalist": 2,
+            "fixer": 1
+          }
         },
         {
           "text": "We ship sloppy work and call it 'iterating'",
-          "scores": {"completionist": 3}
+          "scores": {
+            "completionist": 3
+          }
         }
+      ],
+      "source_slugs": [
+        "entropy-crushers",
+        "the-old-guard",
+        "the-guard",
+        "the-process-myth",
+        "incrementalists-completionists",
+        "a-deep-breath",
+        "the-coach-and-the-fixer"
       ]
     },
     {
@@ -138,20 +245,40 @@
       "answers": [
         {
           "text": "Talk to each privately, read the real dynamic, then bring them together",
-          "scores": {"organic": 3, "coach": 1}
+          "scores": {
+            "organic": 3,
+            "coach": 1
+          }
         },
         {
           "text": "Make the call yourself — someone has to decide",
-          "scores": {"wolf": 3, "dictator": 1}
+          "scores": {
+            "wolf": 3,
+            "dictator": 1
+          }
         },
         {
           "text": "Set up a structured decision framework so it's not personal",
-          "scores": {"mechanic": 3}
+          "scores": {
+            "mechanic": 3
+          }
         },
         {
           "text": "Stay steady and keep both sides focused on the shared goal",
-          "scores": {"anchor": 3}
+          "scores": {
+            "anchor": 3
+          }
         }
+      ],
+      "source_slugs": [
+        "organics-and-mechanics",
+        "signs-of-art",
+        "the-coach-and-the-fixer",
+        "the-wolf",
+        "sometimes-your-job-is-to-stay-the-hell-out-of-the-way",
+        "three-bad-managers",
+        "three-superpowers",
+        "meeting-creatur"
       ]
     },
     {
@@ -160,20 +287,37 @@
       "answers": [
         {
           "text": "Ship the 90% — users get value now, we polish later",
-          "scores": {"incrementalist": 3, "fixer": 1}
+          "scores": {
+            "incrementalist": 3,
+            "fixer": 1
+          }
         },
         {
           "text": "Finish it properly — the last 10% is what separates good from great",
-          "scores": {"completionist": 3}
+          "scores": {
+            "completionist": 3
+          }
         },
         {
           "text": "I'll just knock out that last 10% myself this weekend",
-          "scores": {"fixer": 2, "free-electron": 1}
+          "scores": {
+            "fixer": 2,
+            "free-electron": 1
+          }
         },
         {
           "text": "Identify exactly what's blocking and assign clear owners for each piece",
-          "scores": {"entropy-crusher": 3}
+          "scores": {
+            "entropy-crusher": 3
+          }
         }
+      ],
+      "source_slugs": [
+        "incrementalists-completionists",
+        "a-deep-breath",
+        "the-coach-and-the-fixer",
+        "the-truth-versus-spin",
+        "entropy-crushers"
       ]
     },
     {
@@ -182,20 +326,45 @@
       "answers": [
         {
           "text": "Agenda, time-boxed, decisions documented, next actions assigned",
-          "scores": {"mechanic": 2, "entropy-crusher": 1}
+          "scores": {
+            "mechanic": 2,
+            "entropy-crusher": 1
+          }
         },
         {
           "text": "I avoid meetings — just send me the doc and I'll comment",
-          "scores": {"free-electron": 3}
+          "scores": {
+            "free-electron": 3
+          }
         },
         {
           "text": "Casual and conversational — the best info comes out when people relax",
-          "scores": {"organic": 3, "anchor": 1}
+          "scores": {
+            "organic": 3,
+            "anchor": 1
+          }
         },
         {
           "text": "Short and decisive — here's the problem, here's what we're doing, go",
-          "scores": {"wolf": 2, "fixer": 1, "dictator": 1}
+          "scores": {
+            "wolf": 2,
+            "fixer": 1,
+            "dictator": 1
+          }
         }
+      ],
+      "source_slugs": [
+        "organics-and-mechanics",
+        "signs-of-art",
+        "entropy-crushers",
+        "the-truth-versus-spin",
+        "meeting-creatur",
+        "the-wolf",
+        "sometimes-your-job-is-to-stay-the-hell-out-of-the-way",
+        "a-deep-breath",
+        "the-coach-and-the-fixer",
+        "three-bad-managers",
+        "three-superpowers"
       ]
     },
     {
@@ -204,20 +373,44 @@
       "answers": [
         {
           "text": "Who's going to be confused? Let me get ahead of the chaos",
-          "scores": {"entropy-crusher": 3}
+          "scores": {
+            "entropy-crusher": 3
+          }
         },
         {
           "text": "I've seen this movie before — I know how it ends",
-          "scores": {"old-guard": 3}
+          "scores": {
+            "old-guard": 3
+          }
         },
         {
           "text": "Let me talk to my people and find out how they're really feeling",
-          "scores": {"organic": 2, "coach": 2, "anchor": 1}
+          "scores": {
+            "organic": 2,
+            "coach": 2,
+            "anchor": 1
+          }
         },
         {
           "text": "New structure, new opportunities — where's the most interesting problem now?",
-          "scores": {"free-electron": 2, "wolf": 1}
+          "scores": {
+            "free-electron": 2,
+            "wolf": 1
+          }
         }
+      ],
+      "source_slugs": [
+        "entropy-crushers",
+        "the-old-guard",
+        "the-guard",
+        "the-process-myth",
+        "organics-and-mechanics",
+        "signs-of-art",
+        "the-coach-and-the-fixer",
+        "meeting-creatur",
+        "the-truth-versus-spin",
+        "the-wolf",
+        "sometimes-your-job-is-to-stay-the-hell-out-of-the-way"
       ]
     },
     {
@@ -226,20 +419,37 @@
       "answers": [
         {
           "text": "I craft a carefully worded message — every sentence is deliberate",
-          "scores": {"poet": 3, "distiller": 1}
+          "scores": {
+            "poet": 3,
+            "distiller": 1
+          }
         },
         {
           "text": "I tell it straight — here's what we're doing and why, no sugarcoating",
-          "scores": {"dictator": 3}
+          "scores": {
+            "dictator": 3
+          }
         },
         {
           "text": "I frame it as the next chapter in our story — where we've been and where we're going",
-          "scores": {"storyteller": 3}
+          "scores": {
+            "storyteller": 3
+          }
         },
         {
           "text": "I tailor the message differently for each audience — engineers, PMs, execs",
-          "scores": {"handler": 3}
+          "scores": {
+            "handler": 3
+          }
         }
+      ],
+      "source_slugs": [
+        "poets-and-police",
+        "the-button",
+        "knee-jerks",
+        "three-bad-managers",
+        "three-superpowers",
+        "stimulus-driven-creatures"
       ]
     },
     {
@@ -248,20 +458,42 @@
       "answers": [
         {
           "text": "Wander around — sit in on meetings, read old docs, talk to everyone I can find",
-          "scores": {"wanderer": 3}
+          "scores": {
+            "wanderer": 3
+          }
         },
         {
           "text": "Question everything — why is this process so slow? Why do we use this tool?",
-          "scores": {"new-guard": 3}
+          "scores": {
+            "new-guard": 3
+          }
         },
         {
           "text": "Find the messiest problem and start proposing fixes immediately",
-          "scores": {"fixer": 2, "builder": 1}
+          "scores": {
+            "fixer": 2,
+            "builder": 1
+          }
         },
         {
           "text": "Map out the org chart, learn who has influence, and build relationships",
-          "scores": {"handler": 2, "organic": 1}
+          "scores": {
+            "handler": 2,
+            "organic": 1
+          }
         }
+      ],
+      "source_slugs": [
+        "the-wanderer",
+        "the-old-guard",
+        "the-guard",
+        "the-process-myth",
+        "a-deep-breath",
+        "the-coach-and-the-fixer",
+        "one-thing",
+        "knee-jerks",
+        "organics-and-mechanics",
+        "signs-of-art"
       ]
     },
     {
@@ -270,20 +502,40 @@
       "answers": [
         {
           "text": "A brand-new product built from scratch with a small team",
-          "scores": {"builder": 3, "free-electron": 1}
+          "scores": {
+            "builder": 3,
+            "free-electron": 1
+          }
         },
         {
           "text": "Taking a slow, bloated system and making it 10x faster",
-          "scores": {"optimizer": 3}
+          "scores": {
+            "optimizer": 3
+          }
         },
         {
           "text": "A complex cross-team initiative where I'm the one connecting the dots",
-          "scores": {"handler": 2, "wanderer": 1}
+          "scores": {
+            "handler": 2,
+            "wanderer": 1
+          }
         },
         {
           "text": "One where I get to write the vision doc that rallies everyone behind it",
-          "scores": {"poet": 2, "storyteller": 1}
+          "scores": {
+            "poet": 2,
+            "storyteller": 1
+          }
         }
+      ],
+      "source_slugs": [
+        "one-thing",
+        "the-truth-versus-spin",
+        "stimulus-driven-creatures",
+        "knee-jerks",
+        "the-wanderer",
+        "poets-and-police",
+        "the-button"
       ]
     },
     {
@@ -292,20 +544,40 @@
       "answers": [
         {
           "text": "Calmly restate the core question and redirect the group",
-          "scores": {"anchor": 3}
+          "scores": {
+            "anchor": 3
+          }
         },
         {
           "text": "Summarize the two positions in one sentence each and force a decision",
-          "scores": {"distiller": 3}
+          "scores": {
+            "distiller": 3
+          }
         },
         {
           "text": "Just make the decision myself — we've talked enough",
-          "scores": {"dictator": 2, "wolf": 1}
+          "scores": {
+            "dictator": 2,
+            "wolf": 1
+          }
         },
         {
           "text": "Suggest we take it offline and let people think before we reconvene",
-          "scores": {"organic": 2, "anchor": 1}
+          "scores": {
+            "organic": 2,
+            "anchor": 1
+          }
         }
+      ],
+      "source_slugs": [
+        "meeting-creatur",
+        "knee-jerks",
+        "three-bad-managers",
+        "three-superpowers",
+        "the-wolf",
+        "sometimes-your-job-is-to-stay-the-hell-out-of-the-way",
+        "organics-and-mechanics",
+        "signs-of-art"
       ]
     },
     {
@@ -314,20 +586,36 @@
       "answers": [
         {
           "text": "As a narrative — what happened, how it felt, what it taught us",
-          "scores": {"storyteller": 3}
+          "scores": {
+            "storyteller": 3
+          }
         },
         {
           "text": "A clean timeline with root causes distilled to a single paragraph",
-          "scores": {"distiller": 3, "mechanic": 1}
+          "scores": {
+            "distiller": 3,
+            "mechanic": 1
+          }
         },
         {
           "text": "I focus on making sure the right people hear the right takeaways",
-          "scores": {"handler": 3}
+          "scores": {
+            "handler": 3
+          }
         },
         {
           "text": "I turn it into process changes — new alerts, new runbooks, new owners",
-          "scores": {"optimizer": 2, "mechanic": 1}
+          "scores": {
+            "optimizer": 2,
+            "mechanic": 1
+          }
         }
+      ],
+      "source_slugs": [
+        "stimulus-driven-creatures",
+        "knee-jerks",
+        "organics-and-mechanics",
+        "signs-of-art"
       ]
     },
     {
@@ -336,20 +624,42 @@
       "answers": [
         {
           "text": "Rip it out and replace it — fresh start",
-          "scores": {"new-guard": 3, "builder": 1}
+          "scores": {
+            "new-guard": 3,
+            "builder": 1
+          }
         },
         {
           "text": "Understand why it exists first — someone created it for a reason",
-          "scores": {"old-guard": 2, "wanderer": 1}
+          "scores": {
+            "old-guard": 2,
+            "wanderer": 1
+          }
         },
         {
           "text": "Measure the bottleneck, then surgically optimize the worst parts",
-          "scores": {"optimizer": 3}
+          "scores": {
+            "optimizer": 3
+          }
         },
         {
           "text": "Write up a clear proposal comparing the old way and new way",
-          "scores": {"poet": 2, "distiller": 1}
+          "scores": {
+            "poet": 2,
+            "distiller": 1
+          }
         }
+      ],
+      "source_slugs": [
+        "the-old-guard",
+        "the-guard",
+        "the-process-myth",
+        "one-thing",
+        "the-wanderer",
+        "stimulus-driven-creatures",
+        "poets-and-police",
+        "the-button",
+        "knee-jerks"
       ]
     },
     {
@@ -358,20 +668,34 @@
       "answers": [
         {
           "text": "I tell the story of the quarter — the arc from challenge to outcome",
-          "scores": {"storyteller": 3}
+          "scores": {
+            "storyteller": 3
+          }
         },
         {
           "text": "One page, three bullet points, done",
-          "scores": {"distiller": 3}
+          "scores": {
+            "distiller": 3
+          }
         },
         {
           "text": "I know exactly what this exec cares about and I frame everything around that",
-          "scores": {"handler": 3}
+          "scores": {
+            "handler": 3
+          }
         },
         {
           "text": "I write a beautifully clear document that speaks for itself",
-          "scores": {"poet": 3}
+          "scores": {
+            "poet": 3
+          }
         }
+      ],
+      "source_slugs": [
+        "stimulus-driven-creatures",
+        "knee-jerks",
+        "poets-and-police",
+        "the-button"
       ]
     },
     {
@@ -380,20 +704,40 @@
       "answers": [
         {
           "text": "Walk over and ask what's going on — maybe I can help or learn something",
-          "scores": {"wanderer": 3, "coach": 1}
+          "scores": {
+            "wanderer": 3,
+            "coach": 1
+          }
         },
         {
           "text": "Stay in my lane — they have their own leadership",
-          "scores": {"free-electron": 2, "anchor": 1}
+          "scores": {
+            "free-electron": 2,
+            "anchor": 1
+          }
         },
         {
           "text": "Quietly connect them with the right people who can help",
-          "scores": {"handler": 3}
+          "scores": {
+            "handler": 3
+          }
         },
         {
           "text": "Offer to rebuild their tooling — it's probably a systems problem",
-          "scores": {"builder": 2, "optimizer": 1}
+          "scores": {
+            "builder": 2,
+            "optimizer": 1
+          }
         }
+      ],
+      "source_slugs": [
+        "the-wanderer",
+        "the-coach-and-the-fixer",
+        "the-truth-versus-spin",
+        "meeting-creatur",
+        "knee-jerks",
+        "one-thing",
+        "stimulus-driven-creatures"
       ]
     },
     {
@@ -402,20 +746,42 @@
       "answers": [
         {
           "text": "Be the calm center — lower my voice, slow the pace, ground the room",
-          "scores": {"anchor": 3}
+          "scores": {
+            "anchor": 3
+          }
         },
         {
           "text": "Cut through the emotion — state the facts and force us back to the issue",
-          "scores": {"dictator": 2, "distiller": 1}
+          "scores": {
+            "dictator": 2,
+            "distiller": 1
+          }
         },
         {
           "text": "Read the room — figure out what's really driving the tension",
-          "scores": {"organic": 2, "wanderer": 1}
+          "scores": {
+            "organic": 2,
+            "wanderer": 1
+          }
         },
         {
           "text": "Take charge — assign actions and end the meeting",
-          "scores": {"wolf": 2, "dictator": 1}
+          "scores": {
+            "wolf": 2,
+            "dictator": 1
+          }
         }
+      ],
+      "source_slugs": [
+        "meeting-creatur",
+        "three-bad-managers",
+        "three-superpowers",
+        "knee-jerks",
+        "organics-and-mechanics",
+        "signs-of-art",
+        "the-wanderer",
+        "the-wolf",
+        "sometimes-your-job-is-to-stay-the-hell-out-of-the-way"
       ]
     },
     {
@@ -424,20 +790,42 @@
       "answers": [
         {
           "text": "Kill the sacred cows — remove outdated practices nobody questions",
-          "scores": {"new-guard": 3}
+          "scores": {
+            "new-guard": 3
+          }
         },
         {
           "text": "Build a new internal tool that automates the biggest time-waster",
-          "scores": {"builder": 2, "optimizer": 2}
+          "scores": {
+            "builder": 2,
+            "optimizer": 2
+          }
         },
         {
           "text": "Rewrite the company narrative so everyone understands where we're headed",
-          "scores": {"storyteller": 2, "poet": 2}
+          "scores": {
+            "storyteller": 2,
+            "poet": 2
+          }
         },
         {
           "text": "Explore adjacent teams and create bridges between silos",
-          "scores": {"wanderer": 2, "handler": 1}
+          "scores": {
+            "wanderer": 2,
+            "handler": 1
+          }
         }
+      ],
+      "source_slugs": [
+        "the-old-guard",
+        "the-guard",
+        "the-process-myth",
+        "one-thing",
+        "stimulus-driven-creatures",
+        "poets-and-police",
+        "the-button",
+        "the-wanderer",
+        "knee-jerks"
       ]
     }
   ]

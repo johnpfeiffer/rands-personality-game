@@ -43,10 +43,10 @@ CAnswerScoreTriples == {
     <<"q1-a1", "coach", 0>>,
     <<"q1-a2", "wolf", 0>>,
     <<"q1-a2", "coach", 3>>,
-    <<"q2-a1", "wolf", 0>>,
+    <<"q2-a1", "wolf", 1>>,
     <<"q2-a1", "coach", 0>>,
     <<"q2-a2", "wolf", 0>>,
-    <<"q2-a2", "coach", 0>>
+    <<"q2-a2", "coach", 1>>
 }
 
 CReachableOutcomes == {"wolf", "coach"}
