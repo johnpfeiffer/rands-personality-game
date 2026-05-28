@@ -1,0 +1,1 @@
+../SPEC/RandsPersonalityGame.tla
