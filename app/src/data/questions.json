@@ -369,17 +369,17 @@
       "text": "A legacy process is slowing everyone down. Your move?",
       "answers": [
         {
-          "text": "Rip it out and replace it — fresh start",
+          "text": "Write it down, agree on contracts, and schedule the meetings to get it defined",
           "scores": {
             "new-guard": 3,
-            "builder": 1
+            "builder": 1,
+            "wanderer": 1
           }
         },
         {
-          "text": "Understand why it exists first — someone created it for a reason",
+          "text": "It feels off — this is the home we built with our hands, and that process smells like big company bullshit",
           "scores": {
-            "old-guard": 2,
-            "wanderer": 1
+            "old-guard": 3
           }
         },
         {
