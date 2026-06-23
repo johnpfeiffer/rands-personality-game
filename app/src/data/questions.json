@@ -49,21 +49,21 @@
       "text": "How do you know a project is on track?",
       "answers": [
         {
-          "text": "I talk to people — their tone and energy tell me everything",
+          "text": "I wander the halls and ask seemingly meaningless questions — tone and energy tell me everything",
           "scores": {
             "organic": 3
           }
         },
         {
-          "text": "Dashboards, burndown charts, and status reports",
+          "text": "Without a plan there is no hope — give me the structure, the matrix, the milestones",
           "scores": {
             "mechanic": 3
           }
         },
         {
-          "text": "Are we shipping increments regularly? Then we're fine",
+          "text": "It's only 'on track' if 'done' means SOLVE IT RIGHT — not something we'll be fixing again in three months",
           "scores": {
-            "incrementalist": 3
+            "completionist": 3
           }
         },
         {
@@ -301,9 +301,9 @@
           }
         },
         {
-          "text": "Just make the decision myself — we've talked enough",
+          "text": "The Mandate: we're climbing this hill now and we're not stopping until everyone's at the top — start climbing",
           "scores": {
-            "dictator": 2,
+            "dictator": 3,
             "wolf": 1
           }
         },
