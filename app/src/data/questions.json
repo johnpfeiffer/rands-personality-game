@@ -49,21 +49,21 @@
       "text": "How do you know a project is on track?",
       "answers": [
         {
-          "text": "I talk to people — their tone and energy tell me everything",
+          "text": "I wander asking seemingly meaningless questions — yet tone and energy tell me everything",
           "scores": {
             "organic": 3
           }
         },
         {
-          "text": "Dashboards, burndown charts, and status reports",
+          "text": "Without a plan there is no hope. This needs structure, the matrix, and milestones.",
           "scores": {
             "mechanic": 3
           }
         },
         {
-          "text": "Are we shipping increments regularly? Then we're fine",
+          "text": "'Done' means SOLVE IT RIGHT — not something we'll fix again in three months",
           "scores": {
-            "incrementalist": 3
+            "completionist": 3
           }
         },
         {
@@ -105,7 +105,7 @@
           }
         },
         {
-          "text": "Put the right person on the right problem and stay the hell out of the way — good work speaks for itself",
+          "text": "Put the right person on it and stay the hell out of the way — good work speaks for itself",
           "scores": {
             "wolf": 2
           }
@@ -301,9 +301,9 @@
           }
         },
         {
-          "text": "Just make the decision myself — we've talked enough",
+          "text": "Mandated: we climb that hill and don't stop until everyone's at the top. Start climbing!",
           "scores": {
-            "dictator": 2,
+            "dictator": 3,
             "wolf": 1
           }
         },
@@ -369,7 +369,7 @@
       "text": "A legacy process is slowing everyone down. Your move?",
       "answers": [
         {
-          "text": "Write it down, agree on contracts, and schedule the meetings to get it defined",
+          "text": "Write things down, agree to contracts, schedule meetings",
           "scores": {
             "new-guard": 3,
             "builder": 1,
@@ -377,7 +377,7 @@
           }
         },
         {
-          "text": "It feels off — this is the home we built with our hands, and that process smells like big company BS",
+          "text": "It feels off — we built this with our hands, and that process smells like big corp BS",
           "scores": {
             "old-guard": 3
           }
