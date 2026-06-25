@@ -49,6 +49,7 @@ export default function ChatSection({
   const [turns, setTurns] = useState<ChatTurn[]>([])
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
+  const [interactionId, setInteractionId] = useState<string | undefined>()
 
   const answerCount = turns.length
   const disabled = chatIsDisabled(answerCount)
@@ -81,11 +82,15 @@ export default function ChatSection({
       const response = await fetch(CHAT_API_PATH, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: prompt }),
+        body: JSON.stringify({
+          message: prompt,
+          previousInteractionId: interactionId,
+        }),
       })
       const body = (await readResponseJson(response)) as {
         message?: string
         error?: string
+        interactionId?: string
       }
 
       if (!response.ok) {
@@ -97,6 +102,7 @@ export default function ChatSection({
         throw new Error('No grounded response was returned.')
       }
 
+      setInteractionId(body.interactionId)
       setTurns((current) => [
         ...current,
         {

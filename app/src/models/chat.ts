@@ -1,6 +1,6 @@
 import type { Personality, ScoredResult } from './types'
 
-export const CHAT_API_PATH = '/rands/chat'
+export const CHAT_API_PATH = '/links/chat'
 export const MAX_CHAT_ANSWERS = 3
 export const MAX_PARAGRAPHS = 9
 export const MAX_SENTENCES = 300
