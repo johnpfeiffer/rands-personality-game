@@ -1,0 +1,11 @@
+{
+  "base_url": "https://randsinrepose.com",
+  "strategy": "auto",
+  "generated_at": "2026-06-25T22:03:23.598973+00:00",
+  "article_count": 914,
+  "source_breakdown": {
+    "wordpress_api": 914
+  },
+  "jsonl_path": "articles.jsonl",
+  "article_directory": "/articles"
+}

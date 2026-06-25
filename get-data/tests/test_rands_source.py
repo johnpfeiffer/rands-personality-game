@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
+import tempfile
 import unittest
 from urllib.error import HTTPError
 
+from download_rands_posts import load_existing_articles
 from models.http_client import HttpResponse
 from models.article import ArticleRecord
 from models.rands_source import (
@@ -22,9 +25,11 @@ EXAMPLE_URL = "https://randsinrepose.com/archives/incrementalists-completionists
 class FakeHttpClient:
     def __init__(self, responses: dict[str, HttpResponse]) -> None:
         self.responses = responses
+        self.requested_urls: list[str] = []
 
     def get_text(self, url: str, accept: str | None = None) -> HttpResponse:
         del accept
+        self.requested_urls.append(url)
         if url in self.responses:
             return self.responses[url]
         raise HTTPError(url, 404, "Not Found", hdrs=None, fp=None)
@@ -151,6 +156,115 @@ class SitemapDownloadTests(unittest.TestCase):
 
         self.assertEqual(len(articles), 1)
         self.assertEqual(articles[0].title, "Incrementalists & Completionists")
+
+
+class SkipExistingTests(unittest.TestCase):
+    def test_sitemap_skips_existing_slug_without_network_call(self) -> None:
+        client = FakeHttpClient(
+            {
+                "https://randsinrepose.com/wp-sitemap.xml": HttpResponse(
+                    url="https://randsinrepose.com/wp-sitemap.xml",
+                    status=200,
+                    headers={},
+                    text="""<?xml version="1.0" encoding="UTF-8"?>
+                    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+                      <url><loc>https://randsinrepose.com/archives/incrementalists-completionists/</loc></url>
+                    </urlset>
+                    """,
+                ),
+                # Deliberately no response for EXAMPLE_URL: fetching it would raise 404.
+            }
+        )
+
+        articles = RandsSourceDownloader(client=client).fetch_articles(
+            strategy="sitemap", skip_slugs={"incrementalists-completionists"}
+        )
+
+        self.assertEqual(articles, [])
+        self.assertNotIn(EXAMPLE_URL, client.requested_urls)
+
+    def test_wordpress_api_skips_existing_slugs_with_table_cases(self) -> None:
+        posts = [
+            {
+                "link": "https://randsinrepose.com/archives/keep/",
+                "slug": "keep",
+                "date": None,
+                "modified": None,
+                "title": {"rendered": "Keep"},
+                "excerpt": {"rendered": ""},
+                "content": {"rendered": "<p>Keep me.</p>"},
+                "categories": [],
+            },
+            {
+                "link": "https://randsinrepose.com/archives/already-have/",
+                "slug": "already-have",
+                "date": None,
+                "modified": None,
+                "title": {"rendered": "Already Have"},
+                "excerpt": {"rendered": ""},
+                "content": {"rendered": "<p>Skip me.</p>"},
+                "categories": [],
+            },
+        ]
+        base = "https://randsinrepose.com/wp-json/wp/v2"
+        client = FakeHttpClient(
+            {
+                f"{base}/categories?per_page=100&page=1&context=view": HttpResponse(
+                    url=f"{base}/categories", status=200, headers={"x-wp-totalpages": "1"}, text="[]"
+                ),
+                f"{base}/posts?per_page=100&page=1&context=view": HttpResponse(
+                    url=f"{base}/posts", status=200, headers={"x-wp-totalpages": "1"}, text=json.dumps(posts)
+                ),
+            }
+        )
+
+        articles = RandsSourceDownloader(client=client).fetch_articles(
+            strategy="wordpress_api", skip_slugs={"already-have"}
+        )
+
+        self.assertEqual([article.slug for article in articles], ["keep"])
+
+
+class ExistingArticleLoadingTests(unittest.TestCase):
+    def test_from_dict_round_trips_to_dict(self) -> None:
+        original = ArticleRecord(
+            url=EXAMPLE_URL,
+            slug="incrementalists-completionists",
+            title="Title",
+            published_at="2003-08-05T09:48:49-07:00",
+            modified_at=None,
+            categories=["Management"],
+            excerpt="An excerpt.",
+            content_html="<p>Body.</p>",
+            content_text="Body.",
+            source="wordpress_api",
+        )
+
+        self.assertEqual(ArticleRecord.from_dict(original.to_dict()), original)
+
+    def test_load_existing_articles_reads_slug_from_file_contents(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            article_dir = Path(tmp) / "articles"
+            article_dir.mkdir()
+            record = ArticleRecord(
+                url=EXAMPLE_URL,
+                slug="incrementalists-completionists",
+                title="Title",
+                published_at=None,
+                modified_at=None,
+            )
+            # Filename intentionally differs from the slug to prove we read the slug field.
+            (article_dir / "incrementalists-completionists-2.json").write_text(
+                json.dumps(record.to_dict()), encoding="utf-8"
+            )
+
+            loaded = load_existing_articles(article_dir)
+
+            self.assertEqual([a.slug for a in loaded], ["incrementalists-completionists"])
+
+    def test_load_existing_articles_returns_empty_when_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(load_existing_articles(Path(tmp) / "articles"), [])
 
 
 if __name__ == "__main__":

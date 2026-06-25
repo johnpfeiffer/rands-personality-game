@@ -123,20 +123,30 @@ class RandsSourceDownloader:
         self.base_url = base_url.rstrip("/")
         self.page_parser = RandsPageParser()
 
-    def fetch_articles(self, strategy: str = "auto", max_posts: int | None = None) -> list[ArticleRecord]:
+    def fetch_articles(
+        self,
+        strategy: str = "auto",
+        max_posts: int | None = None,
+        skip_slugs: set[str] | None = None,
+    ) -> list[ArticleRecord]:
         if strategy not in {"auto", "wordpress_api", "sitemap"}:
             raise ValueError(f"Unsupported strategy: {strategy}")
 
+        skip_slugs = skip_slugs or set()
+
         if strategy in {"auto", "wordpress_api"}:
             try:
-                return self._fetch_from_wordpress_api(max_posts=max_posts)
+                return self._fetch_from_wordpress_api(max_posts=max_posts, skip_slugs=skip_slugs)
             except Exception:
                 if strategy == "wordpress_api":
                     raise
 
-        return self._fetch_from_sitemaps(max_posts=max_posts)
+        return self._fetch_from_sitemaps(max_posts=max_posts, skip_slugs=skip_slugs)
 
-    def _fetch_from_wordpress_api(self, max_posts: int | None = None) -> list[ArticleRecord]:
+    def _fetch_from_wordpress_api(
+        self, max_posts: int | None = None, skip_slugs: set[str] | None = None
+    ) -> list[ArticleRecord]:
+        skip_slugs = skip_slugs or set()
         category_names = self._fetch_category_names()
         page = 1
         articles: list[ArticleRecord] = []
@@ -149,6 +159,9 @@ class RandsSourceDownloader:
                 break
 
             for post in payload:
+                slug = post.get("slug") or slug_from_url(post["link"])
+                if slug in skip_slugs:
+                    continue
                 articles.append(parse_wp_post(post, category_names))
                 if max_posts is not None and len(articles) >= max_posts:
                     return articles
@@ -185,11 +198,16 @@ class RandsSourceDownloader:
 
         return categories
 
-    def _fetch_from_sitemaps(self, max_posts: int | None = None) -> list[ArticleRecord]:
+    def _fetch_from_sitemaps(
+        self, max_posts: int | None = None, skip_slugs: set[str] | None = None
+    ) -> list[ArticleRecord]:
+        skip_slugs = skip_slugs or set()
         sitemap_urls = self._discover_post_urls_from_sitemaps()
         articles: list[ArticleRecord] = []
 
         for post_url in sitemap_urls:
+            if slug_from_url(post_url) in skip_slugs:
+                continue
             response = self.client.get_text(post_url)
             articles.append(self.page_parser.parse_article_html(post_url, response.text))
             if max_posts is not None and len(articles) >= max_posts:

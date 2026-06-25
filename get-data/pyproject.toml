@@ -1,0 +1,9 @@
+[project]
+name = "get-data"
+version = "0.1.0"
+description = "Download Rands in Repose posts into local structured data."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "beautifulsoup4>=4.12.0",
+]

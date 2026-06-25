@@ -34,6 +34,11 @@ class ArticleRecord:
     def to_dict(self) -> dict[str, Any]:
         return _sanitize_for_json(asdict(self))
 
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> "ArticleRecord":
+        fields = {f.name for f in cls.__dataclass_fields__.values()}
+        return cls(**{key: value for key, value in data.items() if key in fields})
+
 
 def _sanitize_for_json(value: Any) -> Any:
     if isinstance(value, str):

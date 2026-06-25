@@ -38,7 +38,22 @@ def parse_args() -> argparse.Namespace:
         default="https://randsinrepose.com",
         help="Root site URL for the blog.",
     )
+    parser.add_argument(
+        "--skip-existing",
+        action="store_true",
+        help="Skip downloading posts whose article JSON already exists in the output directory.",
+    )
     return parser.parse_args()
+
+
+def load_existing_articles(article_dir: Path) -> list[ArticleRecord]:
+    if not article_dir.is_dir():
+        return []
+    articles: list[ArticleRecord] = []
+    for file_path in sorted(article_dir.glob("*.json")):
+        data = json.loads(file_path.read_text(encoding="utf-8"))
+        articles.append(ArticleRecord.from_dict(data))
+    return articles
 
 
 def write_articles(output_dir: Path, articles: list[ArticleRecord], strategy: str, base_url: str) -> dict:
@@ -80,12 +95,24 @@ def write_articles(output_dir: Path, articles: list[ArticleRecord], strategy: st
 
 def main() -> int:
     args = parse_args()
+    output_dir = Path(args.output_dir)
+
+    existing_articles: list[ArticleRecord] = []
+    skip_slugs: set[str] = set()
+    if args.skip_existing:
+        existing_articles = load_existing_articles(output_dir / "articles")
+        skip_slugs = {article.slug for article in existing_articles}
+
     downloader = RandsSourceDownloader(base_url=args.base_url)
-    articles = downloader.fetch_articles(strategy=args.strategy, max_posts=args.max_posts)
-    manifest = write_articles(Path(args.output_dir), articles, args.strategy, args.base_url)
+    new_articles = downloader.fetch_articles(
+        strategy=args.strategy, max_posts=args.max_posts, skip_slugs=skip_slugs
+    )
+    articles = existing_articles + new_articles
+    manifest = write_articles(output_dir, articles, args.strategy, args.base_url)
 
     print(
-        f"Downloaded {manifest['article_count']} articles "
+        f"Downloaded {len(new_articles)} new articles "
+        f"(skipped {len(skip_slugs)} existing), {manifest['article_count']} total "
         f"using {manifest['strategy']} into {args.output_dir}"
     )
     return 0
