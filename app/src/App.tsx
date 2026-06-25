@@ -11,20 +11,7 @@ function AppLayout() {
   return <Outlet context={{ app } satisfies AppContext} />
 }
 
-const theme = createTheme({
-  palette: { mode: 'light' },
-  typography: {
-    fontFamily: 'system-ui, -apple-system, Helvetica, Arial, sans-serif',
-    fontSize: 16,
-    h1: { fontFamily: '"Sentinel B", Georgia, serif' },
-    h2: { fontFamily: '"Sentinel B", Georgia, serif' },
-    h3: { fontFamily: '"Sentinel B", Georgia, serif' },
-    h4: { fontFamily: '"Sentinel B", Georgia, serif' },
-    h5: { fontFamily: '"Sentinel B", Georgia, serif' },
-    h6: { fontFamily: '"Sentinel B", Georgia, serif' },
-    button: { fontSize: '1rem' },
-  },
-})
+const theme = createTheme({ palette: { mode: 'light' } })
 
 const router = createBrowserRouter([
   {
