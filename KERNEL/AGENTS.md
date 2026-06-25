@@ -85,5 +85,5 @@ Prefer Domain Driven Design with a Model View Controller layers pattern where th
 After completing refactoring, and especially new features, use what you know about the changes to:
 - make sure existing tests are passing
 - add any missing "high value" tests (happy path, most critical or likely edge cases); do not attempt fake "full coverage"
-- update docs/architecture.md, including mermaid diagrams for the system design as well as the user journey
+- update architecture.md, including mermaid diagrams for the system design as well as the user journey
 

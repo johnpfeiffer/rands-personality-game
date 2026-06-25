@@ -24,3 +24,14 @@ For each question, there exist answer choices that produce different final perso
 
 For each personality type defined, there must be a series of questions with answers that modify the scores, that results in that personality type being the outcome.
 
+## INV-007: Chat responses are grounded only in existing personality types and their sources
+
+A chat response can only reference personality types that exist in the game and sources that trace to their source_slugs.
+
+Chat must not invent or mutate personality types, descriptions, or source articles.
+
+## INV-008: Chat sessions have a maximum number of interactions
+
+There is a visible count of chat interactions. At the maximum of 3 chat answers, new submissions are disabled.
+
+
