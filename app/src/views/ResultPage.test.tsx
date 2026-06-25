@@ -44,4 +44,17 @@ describe('ResultPage', () => {
     renderWithRoute('wolf', { totals: { wolf: 5, fixer: 2 } })
     expect(screen.getByText(/full scores/i)).toBeInTheDocument()
   })
+
+  it('shows chat section when quiz scores are available', () => {
+    renderWithRoute('wolf', { totals: { wolf: 5, fixer: 2 } })
+    expect(screen.getByText(/ask about your result/i)).toBeInTheDocument()
+    expect(screen.getByText(/queries used: 0 \/ 3/i)).toBeInTheDocument()
+  })
+
+  it('shows chat warning when no quiz scores are present', () => {
+    renderWithRoute('wolf')
+    expect(
+      screen.getByText(/chat is only available for those completing the full quiz/i),
+    ).toBeInTheDocument()
+  })
 })
