@@ -13,6 +13,7 @@ import {
 import { useParams, useNavigate, useLocation, useOutletContext } from 'react-router-dom'
 import { getPersonalityById, personalities } from '../data'
 import { rankResults } from '../models/scoring'
+import ChatSection from '../components/ChatSection'
 import type { AppContext } from '../App'
 
 const RANDS_BASE = 'https://randsinrepose.com/archives/'
@@ -98,6 +99,12 @@ export default function ResultPage() {
       >
         ↺ Take the quiz again
       </Button>
+
+      <ChatSection
+        resultPersonality={personality}
+        ranked={ranked ?? []}
+        hasScores={!!totals}
+      />
     </Container>
   )
 }

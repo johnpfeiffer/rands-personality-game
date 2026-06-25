@@ -29,6 +29,17 @@ flowchart TD
         ScoringModel --> Survey
         ScoringModel --> Result["ResultPage"]
         Personalities --> Result
+        Result --> Chat["ChatSection"]
+        ChatModel["models/chat.ts"] --> Chat
+        ScoringModel --> Chat
+        Personalities --> Chat
+    end
+
+    subgraph ChatBackend["Chat Backend"]
+        Chat -->|POST /rands/chat| Worker["Cloudflare Worker"]
+        Worker --> Provider["Gemini provider"]
+        Provider --> Worker
+        Worker -->|JSON response| Chat
     end
 ```
 
@@ -46,7 +57,29 @@ flowchart LR
     F --> G["Expand source articles"]
     F --> H["Expand full scores"]
     F --> I["Take the quiz again"]
+    F --> J["Ask about result (chat)"]
+    J -->|3 queries max| J
     I --> C
+```
+
+## Chat Journey
+
+```mermaid
+sequenceDiagram
+  participant User
+  participant ChatSection
+  participant Worker as POST /rands/chat
+  participant Gemini
+
+  User->>ChatSection: Submit question
+  ChatSection->>ChatSection: Build prompt from result + top 3 personalities
+  ChatSection->>Worker: Send JSON message
+  Worker->>Gemini: Provider request
+  Gemini-->>Worker: JSON response text
+  Worker-->>ChatSection: message with text + ids/slugs
+  ChatSection->>ChatSection: Validate ids/slugs against existing personalities
+  ChatSection-->>User: Show grounded response text
+  ChatSection->>ChatSection: Disable after 3 answers (INV-008)
 ```
 
 ## Layers
@@ -55,6 +88,11 @@ flowchart LR
   selected answers, completion, restart state, and progress.
 - `app/src/models/scoring.ts` owns sparse score aggregation and deterministic
   result ranking.
+- `app/src/models/chat.ts` owns chat prompt construction, response parsing,
+  grounding validation (INV-007), session limits (INV-008), and response
+  truncation (max 9 paragraphs or 300 sentences).
+- `app/src/components/ChatSection.tsx` owns the chat UI: input, query counter,
+  turn history, and error display. Calls model functions for all business logic.
 - `app/src/data/` owns static curated personality and question JSON. The MVP
   question bank is capped at 12 questions.
 - `app/src/views/` owns presentation, routing, and user interaction.
@@ -64,8 +102,8 @@ instead of embedding scoring or quiz-progression rules.
 
 ## Invariants
 
-The app validates the six kernel invariants in
-`app/src/data/data-integrity.test.ts`:
+The app validates the kernel invariants in
+`app/src/data/data-integrity.test.ts` and `app/src/models/chat.test.ts`:
 
 - at least one personality exists
 - every personality has source slugs that resolve to Rands in Repose links
@@ -73,13 +111,15 @@ The app validates the six kernel invariants in
 - every question has source slugs that resolve to Rands in Repose links
 - every question has answer choices that can change the final winner
 - every personality is reachable through answer choices
+- chat responses only reference existing personality types and source slugs (INV-007)
+- chat sessions disable after 3 answers with a visible counter (INV-008)
 
 ## TLA+
 
 The generated formal model lives in `SPEC/RandsPersonalityGame.tla`.
 The runnable TLC harness lives in `VALIDATION/`.
 
-The TLA+ domain predicates are exactly `INV001` through `INV006`, matching
+The TLA+ domain predicates are exactly `INV001` through `INV008`, matching
 `KERNEL/INVARIANTS.md`.
 
 ## Validation
