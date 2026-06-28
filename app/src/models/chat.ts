@@ -57,10 +57,13 @@ export function buildChatPrompt({
 
   const prefix = [
     'You are a personality test assistant for the "Rands in Repose" management personality quiz.',
-    'Answer the user question about their personality result.',
-    'Use only the personality ids and source slugs provided below.',
+    'Answer the user question directly and practically, using their personality result as the lens.',
+    'Treat sensible follow-up questions as ordinary questions: adapt the structure to the question instead of using a fixed template.',
+    'For application questions, translate the provided personality traits into concrete implications, tradeoffs, and next steps for the user context.',
+    'Use only the personality ids, personality names, descriptions, and source slugs provided below as personality/source grounding.',
     'Do not invent personality types, descriptions, or source articles.',
-    'Be concise. No preamble. No summary.',
+    'You may use general workplace reasoning to apply the grounded personality context to the user question.',
+    'Be concise and useful. No preamble.',
     `Limit your answer to at most ${MAX_PARAGRAPHS} paragraphs or ${MAX_SENTENCES} sentences, whichever is less.`,
     'Return JSON only with this shape: {"text":"your answer","personalityIds":["existing-id"],"sourceSlugs":["existing-slug"]}',
     `The user result is: ${resultPersonality.name} (${resultPersonality.id}).`,

@@ -1,7 +1,14 @@
 // @vitest-environment jsdom
 import '@testing-library/jest-dom/vitest'
 import { afterEach, describe, it, expect, vi } from 'vitest'
-import { cleanup, render, screen, fireEvent, waitFor } from '@testing-library/react'
+import {
+  cleanup,
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  act,
+} from '@testing-library/react'
 import ChatSection from './ChatSection'
 import type { Personality, ScoredResult } from '../models/types'
 
@@ -98,6 +105,56 @@ describe('ChatSection', () => {
       expect.objectContaining({ method: 'POST' }),
     )
     expect(screen.getByText(/queries used: 1 \/ 3/i)).toBeInTheDocument()
+  })
+
+  it('shows a loading animation while waiting for the chat response', async () => {
+    let resolveFetch: (value: {
+      ok: boolean
+      json: () => Promise<{ message: string }>
+    }) => void = () => {}
+
+    const fetchMock = vi.fn(
+      () =>
+        new Promise((resolve) => {
+          resolveFetch = resolve
+        }),
+    )
+    vi.stubGlobal('fetch', fetchMock)
+
+    render(
+      <ChatSection
+        resultPersonality={resultPersonality}
+        ranked={ranked}
+        hasScores={true}
+      />,
+    )
+
+    fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: 'How does this help roadmap planning?' },
+    })
+    fireEvent.click(screen.getByRole('button', { name: /send/i }))
+
+    await waitFor(() => {
+      expect(screen.getByRole('status')).toHaveTextContent(/thinking/i)
+      expect(screen.getAllByRole('progressbar')).not.toHaveLength(0)
+    })
+
+    await act(async () => {
+      resolveFetch({
+        ok: true,
+        json: async () => ({
+          message: JSON.stringify({
+            text: 'Use your bias for action to turn ambiguity into a testable roadmap bet.',
+            personalityIds: ['wolf'],
+            sourceSlugs: ['the-wolf'],
+          }),
+        }),
+      })
+    })
+
+    await waitFor(() => {
+      expect(screen.queryByRole('status')).not.toBeInTheDocument()
+    })
   })
 
   it('shows an error when the response is not grounded', async () => {

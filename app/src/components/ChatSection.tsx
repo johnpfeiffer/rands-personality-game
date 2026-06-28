@@ -4,6 +4,7 @@ import {
   Alert,
   Box,
   Button,
+  CircularProgress,
   Divider,
   Stack,
   TextField,
@@ -146,11 +147,30 @@ export default function ChatSection({
             type="submit"
             variant="outlined"
             disabled={!message.trim() || disabled || submitting}
+            startIcon={
+              submitting ? <CircularProgress size={16} color="inherit" /> : null
+            }
           >
-            Send
+            {submitting ? 'Sending...' : 'Send'}
           </Button>
         </Stack>
       </Box>
+
+      {submitting && (
+        <Stack
+          direction="row"
+          spacing={1}
+          alignItems="center"
+          role="status"
+          aria-live="polite"
+          sx={{ mb: 2 }}
+        >
+          <CircularProgress size={18} />
+          <Typography variant="body2" color="text.secondary">
+            Thinking...
+          </Typography>
+        </Stack>
+      )}
 
       {error && (
         <Alert severity="error" sx={{ mb: 2 }}>

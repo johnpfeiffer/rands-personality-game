@@ -104,6 +104,21 @@ describe('buildChatPrompt', () => {
     expect(prompt).toContain(`${MAX_SENTENCES} sentences`)
   })
 
+  it('allows practical application answers without a fixed template', () => {
+    const prompt = buildChatPrompt({
+      message: 'How does that help me with quarterly roadmap planning?',
+      resultPersonality: personalities[0],
+      nearbyPersonalities: [personalities[0], personalities[1]],
+    })
+
+    expect(prompt).toContain('Answer the user question directly and practically')
+    expect(prompt).toContain('instead of using a fixed template')
+    expect(prompt).toContain('general workplace reasoning')
+    expect(prompt).toContain(
+      'How does that help me with quarterly roadmap planning?',
+    )
+  })
+
   it('stays within the character limit', () => {
     const prompt = buildChatPrompt({
       message: 'A'.repeat(500),

@@ -73,6 +73,7 @@ sequenceDiagram
 
   User->>ChatSection: Submit question
   ChatSection->>ChatSection: Build prompt from result + top 3 personalities
+  ChatSection-->>User: Show animated pending state
   ChatSection->>Worker: Send JSON message
   Worker->>Gemini: Provider request
   Gemini-->>Worker: JSON response text
@@ -89,10 +90,12 @@ sequenceDiagram
 - `app/src/models/scoring.ts` owns sparse score aggregation and deterministic
   result ranking.
 - `app/src/models/chat.ts` owns chat prompt construction, response parsing,
-  grounding validation (INV-007), session limits (INV-008), and response
-  truncation (max 9 paragraphs or 300 sentences).
+  practical application guidance, grounding validation (INV-007), session
+  limits (INV-008), and response truncation (max 9 paragraphs or 300
+  sentences).
 - `app/src/components/ChatSection.tsx` owns the chat UI: input, query counter,
-  turn history, and error display. Calls model functions for all business logic.
+  animated pending state, turn history, and error display. Calls model
+  functions for all business logic.
 - `app/src/data/` owns static curated personality and question JSON. The MVP
   question bank is capped at 12 questions.
 - `app/src/views/` owns presentation, routing, and user interaction.
