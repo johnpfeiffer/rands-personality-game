@@ -19,18 +19,16 @@ import {
   parseChatResponse,
   topNearbyPersonalities,
 } from '../models/chat'
+import type { ChatQuizResponse, ChatTurn } from '../models/chat'
 import type { Personality, ScoredResult } from '../models/types'
-
-interface ChatTurn {
-  id: string
-  question: string
-  text: string
-}
 
 interface ChatSectionProps {
   resultPersonality: Personality
   ranked: ScoredResult[]
   hasScores: boolean
+  quizResponses?: ChatQuizResponse[]
+  initialTurns?: ChatTurn[]
+  onTurnsChange?: (turns: ChatTurn[]) => void
 }
 
 async function readResponseJson(response: Response): Promise<unknown> {
@@ -45,9 +43,12 @@ export default function ChatSection({
   resultPersonality,
   ranked,
   hasScores,
+  quizResponses = [],
+  initialTurns = [],
+  onTurnsChange,
 }: ChatSectionProps) {
   const [message, setMessage] = useState('')
-  const [turns, setTurns] = useState<ChatTurn[]>([])
+  const [turns, setTurns] = useState<ChatTurn[]>(initialTurns)
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [interactionId, setInteractionId] = useState<string | undefined>()
@@ -78,6 +79,7 @@ export default function ChatSection({
         message: trimmed,
         resultPersonality,
         nearbyPersonalities: nearby,
+        quizResponses,
       })
 
       const response = await fetch(CHAT_API_PATH, {
@@ -104,14 +106,18 @@ export default function ChatSection({
       }
 
       setInteractionId(body.interactionId)
-      setTurns((current) => [
-        ...current,
-        {
-          id: `${Date.now()}-${current.length}`,
-          question: trimmed,
-          text: parsed.text,
-        },
-      ])
+      setTurns((current) => {
+        const next = [
+          ...current,
+          {
+            id: `${Date.now()}-${current.length}`,
+            question: trimmed,
+            text: parsed.text,
+          },
+        ]
+        onTurnsChange?.(next)
+        return next
+      })
       setMessage('')
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : 'Chat request failed')

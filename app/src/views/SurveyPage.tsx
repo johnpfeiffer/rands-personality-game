@@ -8,6 +8,7 @@ import {
 } from '@mui/material'
 import { useNavigate, useOutletContext } from 'react-router-dom'
 import { questions, personalities } from '../data'
+import { buildChatQuizResponses } from '../models/chat'
 import { rankResults, tallyScores } from '../models/scoring'
 import type { AppContext } from '../App'
 import {
@@ -44,8 +45,12 @@ export default function SurveyPage() {
       if (isQuizComplete(questions, nextState)) {
         const totals = tallyScores(nextState.selectedAnswers)
         const ranked = rankResults(totals, personalities)
+        const quizResponses = buildChatQuizResponses(
+          questions,
+          nextState.selectedAnswers,
+        )
         navigate(`/${app}/result/${ranked[0].personality.id}`, {
-          state: { totals },
+          state: { totals, quizResponses },
         })
       } else {
         setQuizState(nextState)

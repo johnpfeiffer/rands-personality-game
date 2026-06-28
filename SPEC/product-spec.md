@@ -28,6 +28,8 @@ flowchart LR
     Restart --> Survey
     Result --> Sources["Expand source articles"]
     Result --> Scores["Expand all scores"]
+    Result --> Chat["Ask about result"]
+    Chat -->|Uses result, scores, questions, answers| Chat
     Result --> Again["Take again"]
     Again --> Survey
 ```
@@ -47,6 +49,13 @@ flowchart LR
 - The result page exposes all personality scores through an expandable section.
 - The result page exposes Rands in Repose source references for the result
   personality.
+- Chat is available only after the user reaches a result with final score state.
+- Chat prompts include the final personality, nearby ranked personalities,
+  completed quiz questions, and the user's selected answers.
+- Chat responses persist in the current result session until the user starts or
+  restarts the quiz.
+- Chat submissions are disabled after 3 answered chat interactions with a
+  visible interaction count.
 
 ## UX Requirements
 
@@ -74,3 +83,7 @@ flowchart LR
 - The winning personality includes at least one Rands in Repose source
   reference.
 - Expanded score details show the complete score table used for ranking.
+- Chat answers can use the user's completed quiz questions and selected answers
+  as context.
+- Chat turns remain visible on the current result route until the user starts
+  over.

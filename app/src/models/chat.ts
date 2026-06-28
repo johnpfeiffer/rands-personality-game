@@ -1,4 +1,4 @@
-import type { Personality, ScoredResult } from './types'
+import type { Answer, Personality, Question, ScoredResult } from './types'
 
 export const CHAT_API_PATH = '/links/chat'
 export const MAX_CHAT_ANSWERS = 3
@@ -12,6 +12,18 @@ export interface ParsedChatResponse {
   text: string
   personalityIds: string[]
   sourceSlugs: string[]
+}
+
+export interface ChatQuizResponse {
+  questionId: string
+  questionText: string
+  answerText: string
+}
+
+export interface ChatTurn {
+  id: string
+  question: string
+  text: string
 }
 
 export function chatIsDisabled(answerCount: number): boolean {
@@ -40,14 +52,42 @@ function serializePersonality(p: Personality): string {
   })
 }
 
+function serializeQuizResponse(response: ChatQuizResponse): string {
+  return JSON.stringify({
+    questionId: compactText(response.questionId),
+    question: compactText(response.questionText),
+    answer: compactText(response.answerText),
+  })
+}
+
+export function buildChatQuizResponses(
+  questions: Question[],
+  answers: Answer[],
+): ChatQuizResponse[] {
+  return answers.flatMap((answer, index) => {
+    const question = questions[index]
+    if (!question || !answer) return []
+
+    return [
+      {
+        questionId: question.id,
+        questionText: question.text,
+        answerText: answer.text,
+      },
+    ]
+  })
+}
+
 export function buildChatPrompt({
   message,
   resultPersonality,
   nearbyPersonalities,
+  quizResponses = [],
 }: {
   message: string
   resultPersonality: Personality
   nearbyPersonalities: Personality[]
+  quizResponses?: ChatQuizResponse[]
 }): string {
   const question = compactText(message)
   const context = [
@@ -62,6 +102,7 @@ export function buildChatPrompt({
     'For application questions, translate the provided personality traits into concrete implications, tradeoffs, and next steps for the user context.',
     'Use only the personality ids, personality names, descriptions, and source slugs provided below as personality/source grounding.',
     'Do not invent personality types, descriptions, or source articles.',
+    'Use the quiz response context to tailor the answer to the user when it is relevant.',
     'You may use general workplace reasoning to apply the grounded personality context to the user question.',
     'Be concise and useful. No preamble.',
     `Limit your answer to at most ${MAX_PARAGRAPHS} paragraphs or ${MAX_SENTENCES} sentences, whichever is less.`,
@@ -70,7 +111,9 @@ export function buildChatPrompt({
     'Personalities in context:',
   ].join('\n')
 
-  const suffix = `\nUser question: ${question}`
+  const quizLines = quizResponses.map(serializeQuizResponse)
+  const quizContext = quizLines.length > 0 ? quizLines.join('\n') : '[]'
+  const suffix = `\nQuiz responses:\n${quizContext}\nUser question: ${question}`
   const maxLength = PROMPT_CHAR_LIMIT - PROMPT_HEADROOM
   const lines: string[] = []
 

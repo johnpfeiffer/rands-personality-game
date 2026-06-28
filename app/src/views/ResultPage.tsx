@@ -14,18 +14,35 @@ import { useParams, useNavigate, useLocation, useOutletContext } from 'react-rou
 import { getPersonalityById, personalities } from '../data'
 import { rankResults } from '../models/scoring'
 import ChatSection from '../components/ChatSection'
+import type { ChatQuizResponse, ChatTurn } from '../models/chat'
 import type { AppContext } from '../App'
 
 const RANDS_BASE = 'https://randsinrepose.com/archives/'
+
+interface ResultRouteState {
+  totals?: Record<string, number>
+  quizResponses?: ChatQuizResponse[]
+  chatTurns?: ChatTurn[]
+}
 
 export default function ResultPage() {
   const { id } = useParams<{ id: string }>()
   const { app } = useOutletContext<AppContext>()
   const navigate = useNavigate()
   const location = useLocation()
-  const totals = (location.state as { totals?: Record<string, number> } | null)?.totals
+  const routeState = (location.state as ResultRouteState | null) ?? {}
+  const totals = routeState.totals
+  const quizResponses = routeState.quizResponses ?? []
+  const chatTurns = routeState.chatTurns ?? []
 
   const personality = getPersonalityById(id ?? '')
+
+  function persistChatTurns(nextTurns: ChatTurn[]) {
+    navigate(location.pathname, {
+      replace: true,
+      state: { ...routeState, chatTurns: nextTurns },
+    })
+  }
 
   if (!personality) {
     return (
@@ -104,6 +121,9 @@ export default function ResultPage() {
         resultPersonality={personality}
         ranked={ranked ?? []}
         hasScores={!!totals}
+        quizResponses={quizResponses}
+        initialTurns={chatTurns}
+        onTurnsChange={persistChatTurns}
       />
     </Container>
   )

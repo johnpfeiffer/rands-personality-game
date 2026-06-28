@@ -4,13 +4,14 @@ import {
   MAX_CHAT_ANSWERS,
   MAX_PARAGRAPHS,
   MAX_SENTENCES,
+  buildChatQuizResponses,
   buildChatPrompt,
   chatIsDisabled,
   parseChatResponse,
   truncateResponse,
   topNearbyPersonalities,
 } from './chat'
-import type { Personality, ScoredResult } from './types'
+import type { Answer, Personality, Question, ScoredResult } from './types'
 
 const personalities: Personality[] = [
   {
@@ -62,6 +63,48 @@ describe('topNearbyPersonalities', () => {
   it('handles count larger than available', () => {
     const top = topNearbyPersonalities(ranked, 10)
     expect(top).toHaveLength(3)
+  })
+})
+
+describe('buildChatQuizResponses', () => {
+  it('pairs completed questions with the selected answers', () => {
+    const questions: Question[] = [
+      {
+        id: 'q1-v1',
+        text: 'How do you plan?',
+        source_slugs: ['the-wolf'],
+        answers: [],
+      },
+      {
+        id: 'q2-v1',
+        text: 'How do you react to ambiguity?',
+        source_slugs: ['a-deep-breath'],
+        answers: [],
+      },
+    ]
+    const answers: Answer[] = [
+      { text: 'I make a map.', scores: { wolf: 1 } },
+      { text: 'I move first and refine later.', scores: { fixer: 1 } },
+    ]
+
+    expect(buildChatQuizResponses(questions, answers)).toEqual([
+      {
+        questionId: 'q1-v1',
+        questionText: 'How do you plan?',
+        answerText: 'I make a map.',
+      },
+      {
+        questionId: 'q2-v1',
+        questionText: 'How do you react to ambiguity?',
+        answerText: 'I move first and refine later.',
+      },
+    ])
+  })
+
+  it('ignores answers without a matching question', () => {
+    expect(
+      buildChatQuizResponses([], [{ text: 'orphan', scores: { wolf: 1 } }]),
+    ).toEqual([])
   })
 })
 
@@ -119,6 +162,26 @@ describe('buildChatPrompt', () => {
     )
   })
 
+  it('includes quiz questions and selected answers for chat context', () => {
+    const prompt = buildChatPrompt({
+      message: 'How does this affect planning?',
+      resultPersonality: personalities[0],
+      nearbyPersonalities: [personalities[0], personalities[1]],
+      quizResponses: [
+        {
+          questionId: 'q1-v1',
+          questionText: 'How do you make roadmap decisions?',
+          answerText: 'I pick the most interesting hard problem.',
+        },
+      ],
+    })
+
+    expect(prompt).toContain('Use the quiz response context')
+    expect(prompt).toContain('Quiz responses:')
+    expect(prompt).toContain('How do you make roadmap decisions?')
+    expect(prompt).toContain('I pick the most interesting hard problem.')
+  })
+
   it('stays within the character limit', () => {
     const prompt = buildChatPrompt({
       message: 'A'.repeat(500),
@@ -130,7 +193,7 @@ describe('buildChatPrompt', () => {
   })
 
   it('uses the correct API path', () => {
-    expect(CHAT_API_PATH).toBe('/rands/chat')
+    expect(CHAT_API_PATH).toBe('/links/chat')
   })
 })
 

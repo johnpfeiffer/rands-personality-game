@@ -27,8 +27,9 @@ choosing one.
 - `engine-spec.md` defines MVP scoring behavior. The filename is retained for
   continuity with the prior generated spec set.
 - `implementation-plan.md` defines the Red/Green implementation sequence.
-- `RandsPersonalityGame.tla` defines a formal TLA+ model of the six MVP kernel
-  invariants. Its boolean predicates are exactly `INV001` through `INV006`.
+- `RandsPersonalityGame.tla` defines a formal TLA+ model of the data/scoring
+  kernel invariants. Its boolean predicates are exactly `INV001` through
+  `INV006`; chat/session invariants are validated by app tests.
 - `RandsPersonalityGameModel.tla` defines bounded literal model data for TLC
   validation.
 
@@ -43,3 +44,8 @@ must not weaken kernel invariants:
 - Every question references source material from `randsinrepose.com`.
 - Every question can change the final outcome.
 - Every personality type is reachable as a quiz outcome.
+- Chat requires a final score, stays grounded in existing personalities and
+  sources, and does not invent personality/source facts.
+- Chat visibly limits sessions to 3 answers.
+- Chat incorporates completed quiz questions and selected answers, and its
+  responses persist in the current result session until reset or restart.

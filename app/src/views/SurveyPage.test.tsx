@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/vitest'
 import { afterEach, describe, it, expect } from 'vitest'
 import { cleanup, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter, Route, Routes, Outlet } from 'react-router-dom'
+import { MemoryRouter, Route, Routes, Outlet, useLocation } from 'react-router-dom'
 import SurveyPage from './SurveyPage'
 import type { AppContext } from '../App'
 import { questions } from '../data'
@@ -20,6 +20,37 @@ const renderPage = () =>
       <Routes>
         <Route path="/:app" element={<TestLayout />}>
           <Route path="survey" element={<SurveyPage />} />
+        </Route>
+      </Routes>
+    </MemoryRouter>,
+  )
+
+function ResultProbe() {
+  const location = useLocation()
+  const state = location.state as
+    | {
+        totals?: Record<string, number>
+        quizResponses?: { questionText: string; answerText: string }[]
+      }
+    | null
+
+  return (
+    <>
+      <div>result-state-quiz-responses: {state?.quizResponses?.length ?? 0}</div>
+      <div>{state?.quizResponses?.[0]?.questionText}</div>
+      <div>{state?.quizResponses?.[0]?.answerText}</div>
+      <div>result-state-has-totals: {state?.totals ? 'yes' : 'no'}</div>
+    </>
+  )
+}
+
+const renderPageWithResultProbe = () =>
+  render(
+    <MemoryRouter initialEntries={['/test/survey']}>
+      <Routes>
+        <Route path="/:app" element={<TestLayout />}>
+          <Route path="survey" element={<SurveyPage />} />
+          <Route path="result/:id" element={<ResultProbe />} />
         </Route>
       </Routes>
     </MemoryRouter>,
@@ -54,5 +85,23 @@ describe('SurveyPage', () => {
     await userEvent.click(screen.getByRole('button', { name: /restart/i }))
     expect(screen.getByText(`Question 1 of ${questions.length}`)).toBeInTheDocument()
     expect(screen.getByText(questions[0].text)).toBeInTheDocument()
+  })
+
+  it('passes quiz responses and totals to the result route on completion', async () => {
+    renderPageWithResultProbe()
+
+    for (let i = 0; i < questions.length; i += 1) {
+      const answers = screen.getAllByRole('button').filter(
+        (b) => b.textContent !== '↺ Restart',
+      )
+      await userEvent.click(answers[0])
+    }
+
+    expect(
+      await screen.findByText(`result-state-quiz-responses: ${questions.length}`),
+    ).toBeInTheDocument()
+    expect(screen.getByText(questions[0].text)).toBeInTheDocument()
+    expect(screen.getByText(questions[0].answers[0].text)).toBeInTheDocument()
+    expect(screen.getByText('result-state-has-totals: yes')).toBeInTheDocument()
   })
 })

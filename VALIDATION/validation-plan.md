@@ -42,6 +42,9 @@ and network access is available.
 | INV-004 | Every question references source data. | Data test validates question `source_slugs` or `source_urls`. |
 | INV-005 | Every question can change the final outcome. | Data test finds answer choices that produce different winners while other answers are fixed. |
 | INV-006 | Every personality is reachable. | Reachability test searches answer paths or uses a deterministic solver. |
+| INV-007 | Chat requires a final score and stays grounded in existing personality/source data. | Result and chat tests hide chat without route score state and reject unknown ids/slugs. |
+| INV-008 | Chat sessions visibly count interactions and disable after 3 answers. | Chat component tests verify visible counter and disabled input/button at 3 answers. |
+| INV-009 | Chat answers incorporate quiz questions/answers and persist until restart. | Survey, result, chat model, and chat component tests verify quiz response context and persisted chat turns in result route state. |
 
 ## Product Requirement Proof Matrix
 
@@ -55,6 +58,8 @@ and network access is available.
 | Result shows source links. | Winning personality links to source articles. | Result view test. |
 | Result can show all scores. | Score details are expandable. | Result view test. |
 | Final result uses sparse scoring. | Winner equals `rankResults(tallyScores(...))` after all questions. | Scoring and survey tests. |
+| Chat uses completed quiz context. | Question text and selected answer text are carried to the result route and included in the chat prompt. | Survey, result, and chat model tests. |
+| Chat persists result-session turns. | Previous chat turns hydrate from result route state and appended turns are written back to that state. | Result and chat component tests. |
 
 ## Data Validation Cases
 
@@ -91,6 +96,9 @@ and network access is available.
 - Result page exposes source links through an expander.
 - Result page exposes all scores through an expander.
 - Unknown result ids are handled without crashing.
+- Chat warning appears when a result URL is opened without final score state.
+- Chat prompt includes completed quiz question/answer context when available.
+- Existing chat turns on the result route are displayed and counted.
 - Mobile viewport has no overlapping primary content.
 
 ## Documentation Validation

@@ -36,7 +36,7 @@ flowchart TD
     end
 
     subgraph ChatBackend["Chat Backend"]
-        Chat -->|POST /rands/chat| Worker["Cloudflare Worker"]
+        Chat -->|POST /links/chat| Worker["Cloudflare Worker"]
         Worker --> Provider["Gemini provider"]
         Provider --> Worker
         Worker -->|JSON response| Chat
@@ -68,11 +68,11 @@ flowchart LR
 sequenceDiagram
   participant User
   participant ChatSection
-  participant Worker as POST /rands/chat
+  participant Worker as POST /links/chat
   participant Gemini
 
   User->>ChatSection: Submit question
-  ChatSection->>ChatSection: Build prompt from result + top 3 personalities
+  ChatSection->>ChatSection: Build prompt from result + top 3 personalities + quiz responses
   ChatSection-->>User: Show animated pending state
   ChatSection->>Worker: Send JSON message
   Worker->>Gemini: Provider request
@@ -80,6 +80,7 @@ sequenceDiagram
   Worker-->>ChatSection: message with text + ids/slugs
   ChatSection->>ChatSection: Validate ids/slugs against existing personalities
   ChatSection-->>User: Show grounded response text
+  ChatSection->>ChatSection: Persist chat turn in result route state
   ChatSection->>ChatSection: Disable after 3 answers (INV-008)
 ```
 
@@ -90,12 +91,15 @@ sequenceDiagram
 - `app/src/models/scoring.ts` owns sparse score aggregation and deterministic
   result ranking.
 - `app/src/models/chat.ts` owns chat prompt construction, response parsing,
-  practical application guidance, grounding validation (INV-007), session
-  limits (INV-008), and response truncation (max 9 paragraphs or 300
-  sentences).
+  quiz response context construction, practical application guidance, grounding
+  validation (INV-007), session limits (INV-008), and response truncation (max
+  9 paragraphs or 300 sentences).
 - `app/src/components/ChatSection.tsx` owns the chat UI: input, query counter,
   animated pending state, turn history, and error display. Calls model
   functions for all business logic.
+- `app/src/views/ResultPage.tsx` owns result route state for totals, quiz
+  response context, and persisted chat turns. Starting the quiz again leaves
+  that result state behind.
 - `app/src/data/` owns static curated personality and question JSON. The MVP
   question bank is capped at 12 questions.
 - `app/src/views/` owns presentation, routing, and user interaction.
@@ -115,15 +119,19 @@ The app validates the kernel invariants in
 - every question has answer choices that can change the final winner
 - every personality is reachable through answer choices
 - chat responses only reference existing personality types and source slugs (INV-007)
+- chat is available only when final scores exist (INV-007)
 - chat sessions disable after 3 answers with a visible counter (INV-008)
+- chat prompts incorporate quiz questions and selected answers, and chat turns
+  persist in result route state until the user starts over (INV-009)
 
 ## TLA+
 
 The generated formal model lives in `SPEC/RandsPersonalityGame.tla`.
 The runnable TLC harness lives in `VALIDATION/`.
 
-The TLA+ domain predicates are exactly `INV001` through `INV008`, matching
-`KERNEL/INVARIANTS.md`.
+The TLA+ domain predicates currently cover the data/scoring invariants `INV001`
+through `INV006`. Chat/session invariants `INV007` through `INV009` are covered
+by app model and view tests because they describe UI/session behavior.
 
 ## Validation
 

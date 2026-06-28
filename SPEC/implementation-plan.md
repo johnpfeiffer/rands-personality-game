@@ -49,7 +49,16 @@ This plan is AI-derived and must not be treated as authority over `KERNEL/`.
 5. Navigate to a readable result route after the final question.
 6. Show the result personality, source links, and expandable full scores.
 
-## Phase 5: Final Verification
+## Phase 5: Chat Context and Persistence
+
+1. Require final score state before enabling chat.
+2. Carry completed quiz questions and selected answers to the result route.
+3. Include quiz response context in chat prompts.
+4. Persist chat turns in the current result route state until the user starts or
+   restarts the quiz.
+5. Keep the 3-answer chat limit visible and enforced.
+
+## Phase 6: Final Verification
 
 Run the relevant checks before marking work complete:
 
@@ -64,8 +73,9 @@ Also run `npm run lint` for TypeScript, React, or build-configuration changes.
 For TLA+ validation:
 
 Use the temporary TLC harness workflow documented in
-`VALIDATION/tla.md`. The domain TLA+ module must keep only `INV001` through
-`INV006` as boolean predicates.
+`VALIDATION/tla.md`. The domain TLA+ module currently covers the data/scoring
+predicates `INV001` through `INV006`; app tests cover chat/session invariants
+`INV007` through `INV009`.
 
 When source ingestion changes are included, also run downloader/parser tests and
 a live download where network access is available.
