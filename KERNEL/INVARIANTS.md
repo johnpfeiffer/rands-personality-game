@@ -26,6 +26,8 @@ For each personality type defined, there must be a series of questions with answ
 
 ## INV-007: Chat responses are grounded only in existing personality types and their sources
 
+A user must have a final personality score in order to chat.
+
 A chat response can only reference personality types that exist in the game and sources that trace to their source_slugs.
 
 Chat must not invent or mutate personality types, descriptions, or source articles.
@@ -34,4 +36,9 @@ Chat must not invent or mutate personality types, descriptions, or source articl
 
 There is a visible count of chat interactions. At the maximum of 3 chat answers, new submissions are disabled.
 
+## INV-009: Chat incorporates questions and answers
+
+The questions used and User responses must inform Chat answers.
+
+the Chat responses to the User persist like the answers to the question and final score, until the User resets or restarts.
 
