@@ -58,7 +58,7 @@ export default function ResultPage() {
   const ranked = totals ? rankResults(totals, personalities) : null
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 4 }}>
+    <Container maxWidth={false} sx={{ mt: 4, pb: 6 }}>
       <Typography variant="h4" gutterBottom>
         You are: {personality.name}
       </Typography>

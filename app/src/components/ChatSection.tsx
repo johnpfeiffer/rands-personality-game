@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import type { FormEvent } from 'react'
+import type { FormEvent, SyntheticEvent } from 'react'
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Alert,
   Box,
   Button,
   CircularProgress,
-  Divider,
   Stack,
   TextField,
   Typography,
@@ -52,10 +54,18 @@ export default function ChatSection({
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [interactionId, setInteractionId] = useState<string | undefined>()
+  const [expandedId, setExpandedId] = useState<string | false>(
+    () => (initialTurns.length > 0 ? initialTurns[initialTurns.length - 1].id : false),
+  )
 
   const answerCount = turns.length
   const disabled = chatIsDisabled(answerCount)
   const remaining = Math.max(MAX_CHAT_ANSWERS - answerCount, 0)
+
+  const handleAccordionChange =
+    (turnId: string) => (_event: SyntheticEvent, isExpanded: boolean) => {
+      setExpandedId(isExpanded ? turnId : false)
+    }
 
   if (!hasScores) {
     return (
@@ -106,18 +116,15 @@ export default function ChatSection({
       }
 
       setInteractionId(body.interactionId)
-      setTurns((current) => {
-        const next = [
-          ...current,
-          {
-            id: `${Date.now()}-${current.length}`,
-            question: trimmed,
-            text: parsed.text,
-          },
-        ]
-        onTurnsChange?.(next)
-        return next
-      })
+      const newTurn: ChatTurn = {
+        id: `${Date.now()}-${turns.length}`,
+        question: trimmed,
+        text: parsed.text,
+      }
+      const nextTurns = [...turns, newTurn]
+      setTurns(nextTurns)
+      setExpandedId(newTurn.id)
+      onTurnsChange?.(nextTurns)
       setMessage('')
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : 'Chat request failed')
@@ -184,20 +191,28 @@ export default function ChatSection({
         </Alert>
       )}
 
-      {turns.length > 0 && <Divider sx={{ mb: 2 }} />}
-
-      <Stack spacing={2}>
-        {turns.map((turn) => (
-          <Box key={turn.id}>
-            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
-              {turn.question}
-            </Typography>
-            <Typography variant="body2" sx={{ mt: 0.5, whiteSpace: 'pre-wrap' }}>
-              {turn.text}
-            </Typography>
-          </Box>
-        ))}
-      </Stack>
+      {turns.length > 0 && (
+        <Box sx={{ mt: 2 }}>
+          {[...turns].reverse().map((turn) => (
+            <Accordion
+              key={turn.id}
+              expanded={expandedId === turn.id}
+              onChange={handleAccordionChange(turn.id)}
+            >
+              <AccordionSummary expandIcon="▸">
+                <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                  {turn.question}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap' }}>
+                  {turn.text}
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </Box>
+      )}
     </Box>
   )
 }
