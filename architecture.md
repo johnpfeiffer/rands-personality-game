@@ -33,6 +33,7 @@ flowchart TD
         ChatModel["models/chat.ts"] --> Chat
         ScoringModel --> Chat
         Personalities --> Chat
+        FooterComp["Footer (global, mounted in App.tsx)"]
     end
 
     subgraph ChatBackend["Chat Backend"]
@@ -48,6 +49,7 @@ flowchart TD
 ```mermaid
 flowchart LR
     A["/rands"] --> B["Start quiz"]
+    A --> K["Footer (every page): built by + source links"]
     B --> C["/rands/survey"]
     C --> D["Answer current linear question"]
     D --> E{"More questions?"}
@@ -103,6 +105,11 @@ sequenceDiagram
 - `app/src/data/` owns static curated personality and question JSON. The MVP
   question bank is capped at 12 questions.
 - `app/src/views/` owns presentation, routing, and user interaction.
+- `app/src/components/Footer.tsx` is a pure presentational global footer
+  rendered once in `App.tsx` (inside the `ThemeProvider`, after the
+  `RouterProvider`) so it appears on every route: a "Built by John Pfeiffer"
+  line with LinkedIn and GitHub source-link icons (`@mui/icons-material`),
+  the GitHub link pointing at this repository. Covered by `Footer.test.tsx`.
 
 Business logic should stay in `models`; React views should call model functions
 instead of embedding scoring or quiz-progression rules.
