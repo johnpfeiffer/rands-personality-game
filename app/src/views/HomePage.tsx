@@ -1,6 +1,7 @@
 import { Button, Container, Typography } from '@mui/material'
 import { useNavigate, useOutletContext } from 'react-router-dom'
 import type { AppContext } from '../App'
+import Footer from '../components/Footer'
 
 export default function HomePage() {
   const navigate = useNavigate()
@@ -8,6 +9,7 @@ export default function HomePage() {
   const app = context?.app ?? ''
 
   return (
+    <>
     <Container maxWidth="sm" sx={{ textAlign: 'center', mt: 8 }}>
       <Typography variant="h3" component="h1" gutterBottom>
         Which Rands Personality Are You?
@@ -24,5 +26,7 @@ export default function HomePage() {
         Start the Quiz →
       </Button>
     </Container>
+    <Footer />
+    </>
   )
 }

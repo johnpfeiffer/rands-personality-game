@@ -42,4 +42,13 @@ describe('HomePage', () => {
     await userEvent.click(button)
     // navigation works if no error is thrown in MemoryRouter context
   })
+
+  it('renders the built-by footer with the source link to this repo', () => {
+    renderPage()
+    expect(screen.getByText(/Built by John Pfeiffer/i)).toBeInTheDocument()
+    expect(screen.getByLabelText('Source code on GitHub')).toHaveAttribute(
+      'href',
+      'https://github.com/johnpfeiffer/rands-personality-game',
+    )
+  })
 })
