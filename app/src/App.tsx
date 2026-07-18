@@ -3,7 +3,6 @@ import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import HomePage from './views/HomePage'
 import SurveyPage from './views/SurveyPage'
 import ResultPage from './views/ResultPage'
-import Footer from './components/Footer'
 
 export type AppContext = { app: string }
 
@@ -50,7 +49,6 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <RouterProvider router={router} />
-      <Footer />
     </ThemeProvider>
   )
 }

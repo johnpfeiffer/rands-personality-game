@@ -121,4 +121,13 @@ describe('ResultPage', () => {
       screen.getByText(/chat is only available for those completing the full quiz/i),
     ).toBeInTheDocument()
   })
+
+  it('renders the built-by footer with the source link to this repo', () => {
+    renderWithRoute('wolf')
+    expect(screen.getByText(/Built by John Pfeiffer/i)).toBeInTheDocument()
+    expect(screen.getByLabelText('Source code on GitHub')).toHaveAttribute(
+      'href',
+      'https://github.com/johnpfeiffer/rands-personality-game',
+    )
+  })
 })
