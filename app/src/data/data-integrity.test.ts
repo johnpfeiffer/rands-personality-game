@@ -4,7 +4,13 @@ import { rankResults, tallyScores } from '../models/scoring'
 import type { Answer, Question } from '../models/types'
 
 const RANDS_BASE = 'https://randsinrepose.com/archives/'
-const MAX_QUESTIONS = 12
+// Cap raised from 12 to 13 to accommodate the q21-v1 planning question, which
+// grounds The Mario personality (source: the-mario-meeting). The planning
+// domain is not covered by the original 12-question bank, and INV-006
+// (reachability) for The Mario requires a planning-flavored answer. This
+// relaxes the derived MVP requirements-v3 cap (not a KERNEL invariant) and is
+// recorded here per KERNEL/AGENTS.md.
+const MAX_QUESTIONS = 13
 
 function sourceUrl(slug: string): string {
   return `${RANDS_BASE}${slug}/`
@@ -117,7 +123,7 @@ describe('kernel data invariants', () => {
     }
   })
 
-  it('requirements-v3: question bank has at most twelve questions', () => {
+  it('requirements-v3: question bank has at most thirteen questions', () => {
     expect(questions.length).toBeLessThanOrEqual(MAX_QUESTIONS)
   })
 
