@@ -69,7 +69,7 @@ export default function ResultPage() {
         {personality.description}
       </Typography>
 
-      <Accordion>
+      <Accordion defaultExpanded>
         <AccordionSummary expandIcon="▸">
           <Typography>Source articles</Typography>
         </AccordionSummary>

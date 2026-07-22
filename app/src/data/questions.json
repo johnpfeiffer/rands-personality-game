@@ -259,7 +259,8 @@
         {
           "text": "I tell it straight — here's what we're doing and why, no sugarcoating",
           "scores": {
-            "dictator": 3
+            "dictator": 3,
+            "mario": 3
           }
         },
         {
@@ -492,6 +493,45 @@
         "the-button",
         "the-wanderer",
         "knee-jerks"
+      ]
+    },
+    {
+      "id": "q21-v1",
+      "text": "It's planning season. Where do you make the case for your team's headcount and budget?",
+      "answers": [
+        {
+          "text": "In product and strategy planning months ahead — that's where the budget is actually built",
+          "scores": {
+            "builder": 3
+          }
+        },
+        {
+          "text": "I draw the line from strategy to product to features to the headcount we need",
+          "scores": {
+            "distiller": 2,
+            "optimizer": 1
+          }
+        },
+        {
+          "text": "I keep the team steady and grounded while the planning chaos shakes out above us",
+          "scores": {
+            "anchor": 3
+          }
+        },
+        {
+          "text": "At the talent review — I fight for my team when ratings and comp are decided",
+          "scores": {
+            "mario": 3
+          }
+        }
+      ],
+      "source_slugs": [
+        "the-mario-meeting",
+        "the-ask",
+        "one-thing",
+        "meeting-creatur",
+        "knee-jerks",
+        "stimulus-driven-creatures"
       ]
     }
   ]

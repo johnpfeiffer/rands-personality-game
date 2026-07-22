@@ -56,7 +56,11 @@ Flat JSON question records define the quiz.
 Rules:
 
 - Every question must have at least one answer.
-- The question bank must contain at most 12 questions.
+- The question bank must contain at most 13 questions. (Raised from the MVP 12
+  to add `q21-v1`, a planning-season question that grounds The Mario
+  personality, source `the-mario-meeting`. The relaxation of the derived
+  `requirements-v3` cap is recorded in `data-integrity.test.ts`; no KERNEL
+  invariant caps the question count.)
 - Every question must reference source material from Rands in Repose.
 - Every question must be able to change the final outcome.
 - A question can change the outcome when two of its answers can produce
