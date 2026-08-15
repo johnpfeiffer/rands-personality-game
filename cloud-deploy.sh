@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-DEST="../codespaces-react/apps/rands-game/"
+DEST="../codespaces-react/apps/rands-personality-game/"
 
 echo "=== 5 Most Recent Commits ==="
 git log --oneline -5
