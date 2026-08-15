@@ -14,6 +14,7 @@ import { useParams, useNavigate, useLocation, useOutletContext } from 'react-rou
 import { getPersonalityById, personalities } from '../data'
 import { rankResults } from '../models/scoring'
 import ChatSection from '../components/ChatSection'
+import Footer from '../components/Footer'
 import type { ChatQuizResponse, ChatTurn } from '../models/chat'
 import type { AppContext } from '../App'
 
@@ -58,6 +59,7 @@ export default function ResultPage() {
   const ranked = totals ? rankResults(totals, personalities) : null
 
   return (
+    <>
     <Container maxWidth={false} sx={{ mt: 4, pb: 6 }}>
       <Typography variant="h4" gutterBottom>
         You are: {personality.name}
@@ -67,7 +69,7 @@ export default function ResultPage() {
         {personality.description}
       </Typography>
 
-      <Accordion>
+      <Accordion defaultExpanded>
         <AccordionSummary expandIcon="▸">
           <Typography>Source articles</Typography>
         </AccordionSummary>
@@ -126,5 +128,7 @@ export default function ResultPage() {
         onTurnsChange={persistChatTurns}
       />
     </Container>
+    <Footer />
+    </>
   )
 }

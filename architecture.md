@@ -33,6 +33,8 @@ flowchart TD
         ChatModel["models/chat.ts"] --> Chat
         ScoringModel --> Chat
         Personalities --> Chat
+        Home --> FooterComp["Footer (landing + result pages)"]
+        Result --> FooterComp
     end
 
     subgraph ChatBackend["Chat Backend"]
@@ -48,16 +50,18 @@ flowchart TD
 ```mermaid
 flowchart LR
     A["/rands"] --> B["Start quiz"]
+    A --> K["Footer (landing + result): built by + source links"]
     B --> C["/rands/survey"]
     C --> D["Answer current linear question"]
     D --> E{"More questions?"}
     E -->|Yes| C
     E -->|No| F["/rands/result/:id"]
     C -->|Restart| C
-    F --> G["Expand source articles"]
+    F --> G["Source articles (expanded by default)"]
     F --> H["Expand full scores"]
     F --> I["Take the quiz again"]
     F --> J["Ask about result (chat)"]
+    F --> K
     J -->|3 queries max| J
     I --> C
 ```
@@ -99,10 +103,26 @@ sequenceDiagram
   functions for all business logic.
 - `app/src/views/ResultPage.tsx` owns result route state for totals, quiz
   response context, and persisted chat turns. Starting the quiz again leaves
-  that result state behind.
-- `app/src/data/` owns static curated personality and question JSON. The MVP
-  question bank is capped at 12 questions.
+  that result state behind. The `Source articles` accordion renders expanded
+  by default so the grounding links are visible without a click (a scoped
+  exception to the general progressive-disclosure guidance in
+  `KERNEL/DESIGN.md`); the `Full scores` accordion stays collapsed.
+- `app/src/data/` owns static curated personality and question JSON. The
+  question bank is capped at 13 questions. The cap was raised from the MVP 12
+  to add `q21-v1`, a planning-season question that grounds The Mario
+  personality (source: `the-mario-meeting`); the reason is recorded in
+  `data-integrity.test.ts`. The Mario personality is reachable via two
+  answer-score entries (the `q21-v1` talent-review answer plus the blunt
+  "tell it straight" answer on `q11-v1`); the `q21-v1` planning answers also
+  boost `builder` and `anchor`, which previously won only on the alphabetical
+  tiebreak (margin 0).
 - `app/src/views/` owns presentation, routing, and user interaction.
+- `app/src/components/Footer.tsx` is a pure presentational footer rendered on
+  the landing page (`HomePage`) and the result pages (`ResultPage`) only - not
+  on the survey. It shows a "Built by John Pfeiffer" line with LinkedIn and
+  GitHub source-link icons (`@mui/icons-material`); the GitHub link points at
+  this repository. Covered by `Footer.test.tsx` plus presence/absence
+  assertions in the HomePage, ResultPage, and SurveyPage tests.
 
 Business logic should stay in `models`; React views should call model functions
 instead of embedding scoring or quiz-progression rules.

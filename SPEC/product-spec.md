@@ -37,7 +37,9 @@ flowchart LR
 ## Functional Requirements
 
 - The app asks all questions from the question bank in linear order.
-- The question bank contains at most 12 questions.
+- The question bank contains at most 13 questions (raised from the MVP 12 to
+  add the `q21-v1` planning question that grounds The Mario personality; see
+  `data-integrity.test.ts` for the recorded reason).
 - Each answer contributes sparse score weights to one or more personalities.
 - Scores are accumulated as the user answers questions.
 - The result is the highest-ranked personality after all questions are answered.

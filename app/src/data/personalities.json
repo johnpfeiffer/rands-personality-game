@@ -119,6 +119,12 @@
       "name": "The New Guard",
       "description": "You challenge the status quo because you're not burdened by its history. You ask 'why not?' when everyone else says 'because.' You bring fresh energy and fresh ideas, and you're not afraid to break things that need breaking.",
       "source_slugs": ["the-old-guard", "the-guard", "the-process-myth"]
+    },
+    {
+      "id": "mario",
+      "name": "The Mario",
+      "description": "You fight hard for your team. When review season comes, you're in the room arguing for every dollar and every promotion, and your moxie is real — but you're arguing in the wrong meeting. The budget was set a year ago in product planning you skipped because you're 'not a product guy,' and no one is going to explain the system to you. You have the conviction; what you're missing is the calendar.",
+      "source_slugs": ["the-mario-meeting"]
     }
   ]
 }

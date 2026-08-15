@@ -104,4 +104,9 @@ describe('SurveyPage', () => {
     expect(screen.getByText(questions[0].answers[0].text)).toBeInTheDocument()
     expect(screen.getByText('result-state-has-totals: yes')).toBeInTheDocument()
   })
+
+  it('does not render the built-by footer', () => {
+    renderPage()
+    expect(screen.queryByText(/Built by John Pfeiffer/i)).not.toBeInTheDocument()
+  })
 })

@@ -43,6 +43,16 @@ describe('ResultPage', () => {
     expect(screen.getByText(/source articles/i)).toBeInTheDocument()
   })
 
+  it('expands source articles by default but keeps full scores collapsed', () => {
+    renderWithRoute('wolf', { totals: { wolf: 5, fixer: 2 } })
+
+    const sourcesButton = screen.getByRole('button', { name: /source articles/i })
+    expect(sourcesButton).toHaveAttribute('aria-expanded', 'true')
+
+    const scoresButton = screen.getByRole('button', { name: /full scores/i })
+    expect(scoresButton).toHaveAttribute('aria-expanded', 'false')
+  })
+
   it('shows full scores when totals are provided via state', () => {
     renderWithRoute('wolf', { totals: { wolf: 5, fixer: 2 } })
     expect(screen.getByText(/full scores/i)).toBeInTheDocument()
@@ -120,5 +130,14 @@ describe('ResultPage', () => {
     expect(
       screen.getByText(/chat is only available for those completing the full quiz/i),
     ).toBeInTheDocument()
+  })
+
+  it('renders the built-by footer with the source link to this repo', () => {
+    renderWithRoute('wolf')
+    expect(screen.getByText(/Built by John Pfeiffer/i)).toBeInTheDocument()
+    expect(screen.getByLabelText('Source code on GitHub')).toHaveAttribute(
+      'href',
+      'https://github.com/johnpfeiffer/rands-personality-game',
+    )
   })
 })
