@@ -12,6 +12,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { personalities as allPersonalitiesData } from '../data'
 import {
   CHAT_API_PATH,
@@ -154,7 +155,7 @@ export default function ChatSection({
             minRows={2}
             maxRows={4}
             disabled={disabled || submitting}
-            inputProps={{ maxLength: 500 }}
+            slotProps={{ htmlInput: { maxLength: 500 } }}
           />
           <Button
             type="submit"
@@ -173,10 +174,9 @@ export default function ChatSection({
         <Stack
           direction="row"
           spacing={1}
-          alignItems="center"
           role="status"
           aria-live="polite"
-          sx={{ mb: 2 }}
+          sx={{ alignItems: 'center', mb: 2 }}
         >
           <CircularProgress size={18} />
           <Typography variant="body2" color="text.secondary">
@@ -199,7 +199,7 @@ export default function ChatSection({
               expanded={expandedId === turn.id}
               onChange={handleAccordionChange(turn.id)}
             >
-              <AccordionSummary expandIcon="▸">
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                   {turn.question}
                 </Typography>

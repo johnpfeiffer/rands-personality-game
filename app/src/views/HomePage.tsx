@@ -1,4 +1,5 @@
 import { Button, Container, Typography } from '@mui/material'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useNavigate, useOutletContext } from 'react-router-dom'
 import type { AppContext } from '../App'
 import Footer from '../components/Footer'
@@ -10,23 +11,24 @@ export default function HomePage() {
 
   return (
     <>
-    <Container maxWidth="sm" sx={{ textAlign: 'center', mt: 8 }}>
-      <Typography variant="h3" component="h1" gutterBottom>
-        Which Rands Personality Are You?
-      </Typography>
-      <Typography variant="body1" sx={{ mb: 4 }}>
-        Answer a few questions to discover your management archetype, inspired by
-        Rands in Repose.
-      </Typography>
-      <Button
-        variant="outlined"
-        size="large"
-        onClick={() => navigate(`/${app}/survey`)}
-      >
-        Start the Quiz →
-      </Button>
-    </Container>
-    <Footer />
+      <Container maxWidth="sm" sx={{ textAlign: 'center', mt: 8 }}>
+        <Typography variant="h3" component="h1" gutterBottom>
+          Which Rands Personality Are You?
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 4 }}>
+          Answer a few questions to discover your management archetype, inspired
+          by Rands in Repose.
+        </Typography>
+        <Button
+          variant="outlined"
+          size="large"
+          endIcon={<ArrowForwardIcon />}
+          onClick={() => navigate(`/${app}/survey`)}
+        >
+          Start the Quiz
+        </Button>
+      </Container>
+      <Footer />
     </>
   )
 }

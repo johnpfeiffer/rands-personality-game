@@ -6,6 +6,7 @@ import {
   Typography,
   Stack,
 } from '@mui/material'
+import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import { useNavigate, useOutletContext } from 'react-router-dom'
 import { questions, personalities } from '../data'
 import { buildChatQuizResponses } from '../models/chat'
@@ -63,12 +64,15 @@ export default function SurveyPage() {
 
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
-      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
+      <Stack
+        direction="row"
+        sx={{ alignItems: 'center', justifyContent: 'space-between', mb: 2 }}
+      >
         <Typography variant="caption">
           Question {Math.min(quizState.currentQuestionIndex + 1, questions.length)} of {questions.length}
         </Typography>
-        <Button size="small" onClick={restart}>
-          ↺ Restart
+        <Button size="small" startIcon={<RestartAltIcon />} onClick={restart}>
+          Restart
         </Button>
       </Stack>
 

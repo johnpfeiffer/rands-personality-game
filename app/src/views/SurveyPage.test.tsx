@@ -56,6 +56,11 @@ const renderPageWithResultProbe = () =>
     </MemoryRouter>,
   )
 
+function answerButtons(): HTMLElement[] {
+  const restart = screen.getByRole('button', { name: /restart/i })
+  return screen.getAllByRole('button').filter((button) => button !== restart)
+}
+
 describe('SurveyPage', () => {
   it('shows the first question with answer buttons', () => {
     renderPage()
@@ -66,20 +71,14 @@ describe('SurveyPage', () => {
 
   it('advances to the next question when an answer is clicked', async () => {
     renderPage()
-    const answers = screen.getAllByRole('button').filter(
-      (b) => b.textContent !== '↺ Restart',
-    )
-    await userEvent.click(answers[0])
+    await userEvent.click(answerButtons()[0])
     expect(screen.getByText(`Question 2 of ${questions.length}`)).toBeInTheDocument()
     expect(screen.getByText(questions[1].text)).toBeInTheDocument()
   })
 
   it('restart resets to question 1', async () => {
     renderPage()
-    const answers = screen.getAllByRole('button').filter(
-      (b) => b.textContent !== '↺ Restart',
-    )
-    await userEvent.click(answers[0])
+    await userEvent.click(answerButtons()[0])
     expect(screen.getByText(`Question 2 of ${questions.length}`)).toBeInTheDocument()
 
     await userEvent.click(screen.getByRole('button', { name: /restart/i }))
@@ -91,10 +90,7 @@ describe('SurveyPage', () => {
     renderPageWithResultProbe()
 
     for (let i = 0; i < questions.length; i += 1) {
-      const answers = screen.getAllByRole('button').filter(
-        (b) => b.textContent !== '↺ Restart',
-      )
-      await userEvent.click(answers[0])
+      await userEvent.click(answerButtons()[0])
     }
 
     expect(

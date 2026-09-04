@@ -10,6 +10,9 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import HomeIcon from '@mui/icons-material/Home'
+import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import { useParams, useNavigate, useLocation, useOutletContext } from 'react-router-dom'
 import { getPersonalityById, personalities } from '../data'
 import { rankResults } from '../models/scoring'
@@ -49,8 +52,12 @@ export default function ResultPage() {
     return (
       <Container maxWidth="sm" sx={{ mt: 8, textAlign: 'center' }}>
         <Typography variant="h5">Personality not found.</Typography>
-        <Button onClick={() => navigate(`/${app}`)} sx={{ mt: 2 }}>
-          ← Home
+        <Button
+          startIcon={<HomeIcon />}
+          onClick={() => navigate(`/${app}`)}
+          sx={{ mt: 2 }}
+        >
+          Home
         </Button>
       </Container>
     )
@@ -60,75 +67,76 @@ export default function ResultPage() {
 
   return (
     <>
-    <Container maxWidth={false} sx={{ mt: 4, pb: 6 }}>
-      <Typography variant="h4" gutterBottom>
-        You are: {personality.name}
-      </Typography>
+      <Container maxWidth={false} sx={{ mt: 4, pb: 6 }}>
+        <Typography variant="h4" gutterBottom>
+          You are: {personality.name}
+        </Typography>
 
-      <Typography variant="body1" sx={{ mb: 3 }}>
-        {personality.description}
-      </Typography>
+        <Typography variant="body1" sx={{ mb: 3 }}>
+          {personality.description}
+        </Typography>
 
-      <Accordion defaultExpanded>
-        <AccordionSummary expandIcon="▸">
-          <Typography>Source articles</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <List dense disablePadding>
-            {personality.source_slugs.map((slug) => (
-              <ListItem key={slug} disableGutters>
-                <Link
-                  href={`${RANDS_BASE}${slug}/`}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  {slug}
-                </Link>
-              </ListItem>
-            ))}
-          </List>
-        </AccordionDetails>
-      </Accordion>
-
-      {ranked && (
-        <Accordion>
-          <AccordionSummary expandIcon="▸">
-            <Typography>Full scores</Typography>
+        <Accordion defaultExpanded>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>Source articles</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <List dense disablePadding>
-              {ranked.map((r) => (
-                <ListItem key={r.personality.id} disableGutters>
-                  <ListItemText
-                    primary={`${r.personality.name}: ${r.score}`}
-                  />
+              {personality.source_slugs.map((slug) => (
+                <ListItem key={slug} disableGutters>
+                  <Link
+                    href={`${RANDS_BASE}${slug}/`}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {slug}
+                  </Link>
                 </ListItem>
               ))}
             </List>
           </AccordionDetails>
         </Accordion>
-      )}
 
-      <Button
-        variant="outlined"
-        onClick={() => {
-          navigate(`/${app}/survey`)
-        }}
-        sx={{ mt: 3 }}
-      >
-        ↺ Take the quiz again
-      </Button>
+        {ranked && (
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography>Full scores</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <List dense disablePadding>
+                {ranked.map((r) => (
+                  <ListItem key={r.personality.id} disableGutters>
+                    <ListItemText
+                      primary={`${r.personality.name}: ${r.score}`}
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            </AccordionDetails>
+          </Accordion>
+        )}
 
-      <ChatSection
-        resultPersonality={personality}
-        ranked={ranked ?? []}
-        hasScores={!!totals}
-        quizResponses={quizResponses}
-        initialTurns={chatTurns}
-        onTurnsChange={persistChatTurns}
-      />
-    </Container>
-    <Footer />
+        <Button
+          variant="outlined"
+          startIcon={<RestartAltIcon />}
+          onClick={() => {
+            navigate(`/${app}/survey`)
+          }}
+          sx={{ mt: 3 }}
+        >
+          Take the quiz again
+        </Button>
+
+        <ChatSection
+          resultPersonality={personality}
+          ranked={ranked ?? []}
+          hasScores={!!totals}
+          quizResponses={quizResponses}
+          initialTurns={chatTurns}
+          onTurnsChange={persistChatTurns}
+        />
+      </Container>
+      <Footer />
     </>
   )
 }
