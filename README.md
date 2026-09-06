@@ -11,6 +11,11 @@ inspired by <https://youtu.be/-Akmf4SGHTQ?si=bERFC1kNT3HHiBhL&t=2795>
 
 <https://randsinrepose.com/archives/category/management/page/15/>
 
+## Developing
+
+Node.js 24.20.0 or later is required by the Vite/Vitest toolchain (see
+`app/package.json` `engines`). Run `npm test` and `npm run build` from `app/`.
+
 First we should download all the posts into a local system so that it is available in an efficient way for analysis and development
 
 ## Getting new content
