@@ -2,7 +2,7 @@ import { Button, Container, Typography } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useNavigate, useOutletContext } from 'react-router-dom'
 import type { AppContext } from '../App'
-import Footer from '../components/Footer'
+import { SiteFooter } from 'johnutilsjs/ui'
 
 export default function HomePage() {
   const navigate = useNavigate()
@@ -28,7 +28,7 @@ export default function HomePage() {
           Start the Quiz
         </Button>
       </Container>
-      <Footer />
+      <SiteFooter repo="rands-personality-game" />
     </>
   )
 }
