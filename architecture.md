@@ -33,7 +33,7 @@ flowchart TD
         ChatModel["models/chat.ts"] --> Chat
         ScoringModel --> Chat
         Personalities --> Chat
-        Home --> FooterComp["Footer (landing + result pages)"]
+        Home --> FooterComp["SiteFooter from johnutilsjs/ui (landing + result pages)"]
         Result --> FooterComp
     end
 
@@ -50,7 +50,7 @@ flowchart TD
 ```mermaid
 flowchart LR
     A["/rands"] --> B["Start quiz"]
-    A --> K["Footer (landing + result): built by + source links"]
+    A --> K["SiteFooter (landing + result): built by + source links"]
     B --> C["/rands/survey"]
     C --> D["Answer current linear question"]
     D --> E{"More questions?"}
@@ -117,12 +117,13 @@ sequenceDiagram
   boost `builder` and `anchor`, which previously won only on the alphabetical
   tiebreak (margin 0).
 - `app/src/views/` owns presentation, routing, and user interaction.
-- `app/src/components/Footer.tsx` is a pure presentational footer rendered on
+- The footer is the shared `SiteFooter` from `johnutilsjs/ui`, rendered on
   the landing page (`HomePage`) and the result pages (`ResultPage`) only - not
-  on the survey. It shows a "Built by John Pfeiffer" line with LinkedIn and
-  GitHub source-link icons (`@mui/icons-material`); the GitHub link points at
-  this repository. Covered by `Footer.test.tsx` plus presence/absence
-  assertions in the HomePage, ResultPage, and SurveyPage tests.
+  on the survey. It shows a centered "Built by John Pfeiffer" line with
+  LinkedIn and GitHub source-link icons; the app passes
+  `repo="rands-personality-game"` so the GitHub link points at this
+  repository. Covered by presence/absence assertions in the HomePage,
+  ResultPage, and SurveyPage tests.
 
 Business logic should stay in `models`; React views should call model functions
 instead of embedding scoring or quiz-progression rules.
